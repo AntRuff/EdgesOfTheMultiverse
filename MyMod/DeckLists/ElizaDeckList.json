@@ -1,0 +1,360 @@
+{
+  "name": "Eliza",
+  "kind": "Hero",
+  "expansionIdentifier": "EdgesOfTheMultiverse",
+  "initialCardIdentifiers": [
+    "ElizaCharacter"
+  ],
+  "cards": [
+    {
+      "identifier": "ElizaCharacter",
+      "count": 1,
+      "title": "Eliza",
+      "body": "Watch Captain",
+      "backgroundColor": "909090",
+      "foilBackgroundColor": "FDFDFD",
+      "hitpointColor": "909090",
+      "character": true,
+      "powers": [
+        "Draw 1 card. {Eliza} deals 1 target 2 melee damage."
+      ],
+      "icons": [
+        "HasPower",
+        "DrawCardNow",
+        "DealDamage<Melee>"
+      ],
+      "hitpoints": 24,
+      "nemisisIdentifiers": [
+        "EdgesOfTheMultiverse.Eliza"
+      ],
+      "incapacitatedAbilites": [
+        "Reduce damage dealt to 1 target by 1 until the start of your next turn.",
+        "One hero deals a target 1 melee damage and 1 melee damage.",
+        "One player may draw a card now."
+      ],
+      "flippedIcons": [
+        "ReduceDamageDealt",
+        "DealDamage<Melee>",
+        "DrawCardNow"
+      ],
+      "openingLines": {
+        "default": "We must incapacitate them quickly."
+      },
+      "complexity": 2
+    },
+    {
+      "identifier": "OmnifensiveFighting",
+      "count": 4,
+      "title": "Omnifensive Fighting",
+      "keywords": [
+        "one-shot"
+      ],
+      "icons": [
+        "DealDamageMelee",
+        "ReduceDamageTaken"
+      ],
+      "body": "{Eliza} deals 1 target 2 melee damage. {Eliza} reduces the next damage she takes by 1.",
+      "flavorQuotes": [
+        {
+          "identifier": "Character",
+          "text": "Flavor Text"
+        }
+      ],
+      "flavorReference": "Comic Series and Issue"
+    },
+    {
+      "identifier": "RapidStrikes",
+      "count": 3,
+      "title": "Rapid Strikes",
+      "keywords": [
+        "one-shot"
+      ],
+      "icons": [
+        "DealDamageMelee"
+      ],
+      "body": "{Eliza} deals 1 target 2 melee damage, and a second target 2 melee damage.",
+      "flavorQuotes": [
+        {
+          "identifier": "Character",
+          "text": "Flavor Text"
+        }
+      ],
+      "flavorReference": "Comic Series and Issue"
+    },
+    {
+      "identifier": "SwiftIncapacitation",
+      "count": 3,
+      "title": "Swift Incapacitation",
+      "keywords": [
+        "one-shot"
+      ],
+      "icons": [
+        "DestroyTarget"
+      ],
+      "body": "You may destroy up to 2 targets with 2 or less HP.",
+      "flavorQuotes": [
+        {
+          "identifier": "Character",
+          "text": "Flavor Text"
+        }
+      ],
+      "flavorReference": "Comic Series and Issue"
+    },
+    {
+      "identifier": "CallForArms",
+      "count": 4,
+      "title": "Call For Arms",
+      "keywords": [
+        "one-shot"
+      ],
+      "icons": [
+        "Search",
+        "DrawCardsNow",
+        "PlayCardsNow"
+      ],
+      "body": "Search your deck for a copy of Engraved Rapier and add it to your hand. You may draw a card. You may play a card.",
+      "flavorQuotes": [
+        {
+          "identifier": "Character",
+          "text": "Flavor Text"
+        }
+      ],
+      "flavorReference": "Comic Series and Issue"
+    },
+    {
+      "identifier": "ChargeTheArcaneCells",
+      "count": 4,
+      "title": "Charge The Arcane Cells",
+      "keywords": [
+        "one-shot"
+      ],
+      "icons": [
+        "Search",
+        "PlayCardNow",
+        "Manipulate"
+      ],
+      "body": "Search your deck for an Arcane Cell. You may put it into play or your hand.",
+      "flavorQuotes": [
+        {
+          "identifier": "Character",
+          "text": "Flavor Text"
+        }
+      ],
+      "flavorReference": "Comic Series and Issue"
+    },
+    {
+      "identifier": "ArcaneArm",
+      "count": 3,
+      "title": "Arcane Arm",
+      "keywords": [
+        "equipment",
+        "limited"
+      ],
+      "icons": [
+        "RedirectDamage",
+        "ReduceDamage",
+        "DestroyEquipment"
+      ],
+      "body": [
+        "Reduce damage to this card by 1. When {Eliza} would be dealt damage, redirect that damage to this card.",
+        "This card can hold three Arcane Cells. If you play an Arcane Cell next to this card while 3 others are next to this card, destroy an Arcane Cell.",
+        "If this card leaves play, destroy all Arcane Cells in play."
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Character",
+          "text": "Flavor Text"
+        }
+      ],
+      "flavorReference": "Comic Series and Issue",
+      "hitpoints": 2
+    },
+    {
+      "identifier": "TelekineticCell",
+      "count": 2,
+      "title": "Telekinetic Cell",
+      "keywords": [
+        "equipment",
+        "arcane cell"
+      ],
+      "icons": "Manipulate",
+      "body": [
+        "Play this card next to an Arcane Arm in play.",
+        "Increase the number of Engraved Rapiers in play by 1.",
+        "When this would be destroyed, return an Engraved Rapier in play to your hand."
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Character",
+          "text": "Flavor Text"
+        }
+      ],
+      "flavorReference": "Comic Series and Issue"
+    },
+    {
+      "identifier": "ImpactCell",
+      "count": 2,
+      "title": "Impact Cell",
+      "keywords": [
+        "equipment",
+        "arcane cell"
+      ],
+      "icons": [
+        "IncreaseDamageDealt",
+        "DealDamageFire"
+      ],
+      "body": [
+        "Play this card next to an Arcane Arm in play.",
+        "Increase the damage dealt by {Eliza} by one.",
+        "When this would be destroyed, {Eliza} deals 1 target 2 fire damage."
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Character",
+          "text": "Flavor Text"
+        }
+      ],
+      "flavorReference": "Comic Series and Issue"
+    },
+    {
+      "identifier": "DeflectionCell",
+      "count": 2,
+      "title": "Deflection Cell",
+      "keywords": [
+        "equipment",
+        "arcane cell"
+      ],
+      "icons": [
+        "ReduceDamageTaken",
+        "DrawCardNow"
+      ],
+      "body": [
+        "Play this card next to an Arcane Arm in play.",
+        "Reduce the damage taken by the Arcane Arm by 1.",
+        "When this would be destroyed, you may draw a card."
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Character",
+          "text": "Flavor Text"
+        }
+      ],
+      "flavorReference": "Comic Series and Issue"
+    },
+    {
+      "identifier": "EngravedRapier",
+      "count": 4,
+      "title": "Engraved Rapier",
+      "keywords": [
+        "equipment"
+      ],
+      "icons": [
+        "DealDamageMelee",
+        "HasPower",
+        "DestroyOngoing"
+      ],
+      "body": [
+        "You may only have 1 copy of Engraved Rapier in play at a time.",
+        "The first time {Eliza} deals damage each turn, she deals 1 target 1 melee damage."
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Character",
+          "text": "Flavor Text"
+        }
+      ],
+      "flavorReference": "Comic Series and Issue",
+      "powers": [
+        "{Eliza} deals 1 target 2 melee damage for each Engraved Rapier in play. You may destroy an Ongoing or Equipment card. If you do, destroy this card."
+      ]
+    },
+    {
+      "identifier": "DeliberateTargeting",
+      "count": 3,
+      "title": "Deliberate Targeting",
+      "keywords": [
+        "ongoing",
+        "limited"
+      ],
+      "icons": [
+        "MakeDamageUnredirectable",
+        "HasPower",
+        "DealDamageMelee",
+        "DestroySelf"
+      ],
+      "body": "Damage dealt by {Eliza} can't be redirected.",
+      "flavorQuotes": [
+        {
+          "identifier": "Character",
+          "text": "Flavor Text"
+        }
+      ],
+      "flavorReference": "Comic Series and Issue",
+      "powers": [
+        "{Eliza} deals each target 1 melee damage and destroy this card."
+      ]
+    },
+    {
+      "identifier": "BladeFlurry",
+      "count": 3,
+      "title": "Blade Flurry",
+      "keywords": [
+        "ongoing",
+        "limited"
+      ],
+      "icons": [
+        "Manipulate",
+        "StartAndEndOfTurnAction",
+        "DestroySelf"
+      ],
+      "body": [
+        "When {Eliza} would deal damage, instead deal the target 1 damage X times where X is the damage before modifiers.",
+        "At the end of your turn, you may play a card.",
+        "At the start of your turn, destroy this card."
+      ],
+      "flavorQuotes": [
+        {
+          "identifier": "Character",
+          "text": "Flavor Text"
+        }
+      ],
+      "flavorReference": "Comic Series and Issue"
+    },
+    {
+      "identifier": "CaptureNotKill",
+      "count": 3,
+      "title": "Capture, Not Kill",
+      "keywords": [
+        "ongoing",
+        "limited"
+      ],
+      "icons": [
+        "Manipulate",
+        "HasPower",
+        "DestroySelf"
+      ],
+      "body": "When {Eliza} would destroy a non-Character target, instead place them on the bottom of their associated deck.",
+      "flavorQuotes": [
+        {
+          "identifier": "Character",
+          "text": "Flavor Text"
+        }
+      ],
+      "flavorReference": "Comic Series and Issue",
+      "powers": [
+        "Destroy this card."
+      ]
+    }
+  ],
+  "promoCards": [
+    {
+      "identifier": "ElizaCharacter",
+      "promoIdentifer": "LastWatchElizaCharacter",
+
+    },
+    {
+      "identifier": "ElizaCharacter",
+      "promoIdentifier": "NewCadetElizaCharacter",
+    }
+  ]
+}
