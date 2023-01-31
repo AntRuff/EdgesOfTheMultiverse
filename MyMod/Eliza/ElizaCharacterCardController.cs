@@ -57,7 +57,8 @@ namespace EdgesOfTheMultiverse.Eliza
 					{
 						// Reduce damage dealt to 1 target by 1 until the start of your next turn
 						List<SelectCardDecision> storedResults = new List<SelectCardDecision>();
-						e = base.GameController.SelectCardAndStoreResults(this.DecisionMaker, SelectionType.SelectTargetFriendly, new LinqCardCriteria(c => c.IsInPlayAndHasGameText && c.IsTarget, "targets in play", false), storedResults, false, cardSource: base.GetCardSource());
+						e = base.GameController.SelectCardAndStoreResults(this.HeroTurnTakerController, SelectionType.SelectTarget, 
+							new LinqCardCriteria(c => c.IsInPlayAndHasGameText && c.IsTarget, "targets in play", false), storedResults, false, cardSource: base.GetCardSource());
 						if (base.UseUnityCoroutines)
 						{
 							yield return base.GameController.StartCoroutine(e);

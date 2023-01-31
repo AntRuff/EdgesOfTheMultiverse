@@ -38,7 +38,7 @@
         "DrawCardNow"
       ],
       "openingLines": {
-        "default": "We must incapacitate them quickly."
+        "default": "We must stop them before anymore damage is caused."
       },
       "complexity": 2
     },
@@ -53,7 +53,7 @@
         "DealDamageMelee",
         "ReduceDamageTaken"
       ],
-      "body": "{Eliza} deals 1 target 2 melee damage. {Eliza} reduces the next damage she takes by 1.",
+      "body": "{Eliza} deals 1 target 2 melee damage. {Eliza} reduces the next damage she would take by 1.",
       "flavorQuotes": [
         {
           "identifier": "Character",

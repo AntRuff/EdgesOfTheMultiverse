@@ -39,6 +39,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Eliza\CallForArmsCardController.cs" />
+    <Compile Include="Eliza\ArcaneArmCardController.cs" />
+    <Compile Include="Eliza\BladeFlurryCardController.cs" />
+    <Compile Include="Eliza\CaptureNotKillCardController.cs" />
+    <Compile Include="Eliza\DeliberateTargetingCardController.cs" />
+    <Compile Include="Eliza\EngravedRapierCardController.cs" />
+    <Compile Include="Eliza\DeflectionCellCardController.cs" />
+    <Compile Include="Eliza\ImapctCellCardController.cs" />
+    <Compile Include="Eliza\TelekineticCellCardController.cs" />
+    <Compile Include="Eliza\ChargeTheArcaneCellsCardController.cs" />
+    <Compile Include="Eliza\SwiftIncapacitationCardController.cs" />
+    <Compile Include="Eliza\RapidStrikesCardController.cs" />
+    <Compile Include="Eliza\OmnifensiveFightingCardController.cs" />
     <Compile Include="Eliza\ElizaCharacterCardController.cs" />
     <Compile Include="Eliza\CardControllerTemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

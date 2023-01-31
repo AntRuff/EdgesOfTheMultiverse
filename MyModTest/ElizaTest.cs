@@ -18,6 +18,17 @@ namespace MyModTest
 	{
 		protected HeroTurnTakerController eliza { get { return FindHero("Eliza"); } }
 
+		#region HelperFunctions
+		protected string HeroNamespace = "EdgesOfTheMultiverse.Eliza";
+
+		private void SetupIncap(TurnTakerController villain)
+		{
+			SetHitPoints(eliza, 1);
+			DealDamage(villain, eliza, 2, DamageType.Melee);
+		}
+
+		#endregion
+
 		//[Test()]
 		/*
 		 * public void Card {
@@ -34,7 +45,7 @@ namespace MyModTest
 		[Test()]
 		public void TestInnatePower()
 		{
-			SetupGameController("BaronBlade", "EdgesOfTheMultiverse.Eliza", "Megalopolis");
+			SetupGameController("BaronBlade", HeroNamespace, "Megalopolis");
 
 			StartGame();
 
@@ -48,6 +59,55 @@ namespace MyModTest
 
 			QuickHandCheck(1);
 			QuickHPCheck(-2);
+		}
+
+		[Test()]
+		public void TestIncap1()
+		{
+			SetupGameController("BaronBlade", HeroNamespace, "Legacy", "Megalopolis");
+
+			StartGame();
+			SetupIncap(baron);
+			AssertIncapacitated(eliza);
+			Card mdp = GetCardInPlay("MobileDefensePlatform");
+
+			GoToUseIncapacitatedAbilityPhase(eliza);
+			DecisionSelectCard = legacy.CharacterCard;
+			UseIncapacitatedAbility(eliza, 0);
+
+			QuickHPStorage(legacy);
+			DealDamage(mdp, legacy, 2, DamageType.Melee);
+			QuickHPCheck(-1);
+		}
+
+		[Test()]
+		public void TestOmnifensiveFighting()
+		{
+			SetupGameController("BaronBlade", HeroNamespace, "Megalopolis");
+
+			StartGame();
+
+			var mdp = GetCardInPlay("MobileDefensePlatform");
+			//DiscardAllCards(eliza);
+
+			var testCard = PutInHand(eliza, "OmnifensiveFighting");
+
+			GoToPlayCardPhase(eliza);
+
+			DecisionSelectTarget = mdp;
+			QuickHPStorage(mdp);
+			PlayCard(testCard);
+			// 1 target 2 damage
+			QuickHPCheck(-2);
+			// Reduce next damage by 1
+			QuickHPStorage(eliza);
+			DealDamage(mdp, eliza, 3, DamageType.Melee);
+			QuickHPCheck(-2);
+
+			// Damage Should not be reduced this time
+			QuickHPStorage(eliza);
+			DealDamage(mdp, eliza, 3, DamageType.Melee);
+			QuickHPCheck(-3);
 		}
 	}
 }
