@@ -15,9 +15,14 @@ namespace EdgesOfTheMultiverse.Eliza
 		{
 		}
 
+		//{Eliza} deals 1 target 2 melee damage, and a second target 2 melee damage
 		public override IEnumerator Play()
 		{
-			return base.Play();
+			var damage = 2;
+
+			//Look at Bunker's Grenade Launcher
+
+			yield break;
 		}
 	}
 }

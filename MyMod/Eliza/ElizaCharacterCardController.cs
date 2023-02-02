@@ -99,7 +99,7 @@ namespace EdgesOfTheMultiverse.Eliza
 							base.GameController.ExhaustCoroutine(e);
 						}
 
-						DamageSource ds = new DamageSource(GameController, storedResults[0].SelectedTurnTaker);
+						DamageSource ds = new DamageSource(GameController, storedResults[0].SelectedTurnTaker.CharacterCard);
 						List<DealDamageAction> list = new List<DealDamageAction>
 						{
 							new DealDamageAction(GetCardSource(), ds, null, 1, DamageType.Melee),
