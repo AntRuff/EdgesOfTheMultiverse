@@ -11,18 +11,25 @@ namespace EdgesOfTheMultiverse.Eliza
 {
 	public class RapidStrikesCardController : CardController
 	{
-		public RapidStrikesCardController(Card card, TurnTakerController turnTakerController):base(card, turnTakerController)
+		public RapidStrikesCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController)
 		{
 		}
 
-		//{Eliza} deals 1 target 2 melee damage, and a second target 2 melee damage
+		//{Eliza} deals up to 2 targets 2 melee damage each.
 		public override IEnumerator Play()
 		{
 			var damage = 2;
+			var targets = 2;
 
-			//Look at Bunker's Grenade Launcher
-
-			yield break;
+			IEnumerator e = base.GameController.SelectTargetsAndDealDamage(this.HeroTurnTakerController, new DamageSource(base.GameController, base.CharacterCard), damage, DamageType.Melee, targets, false, 0, cardSource: base.GetCardSource());
+			if (base.UseUnityCoroutines)
+			{
+				yield return base.GameController.StartCoroutine(e);
+			}
+			else
+			{
+				base.GameController.ExhaustCoroutine(e);
+			}
 		}
 	}
 }

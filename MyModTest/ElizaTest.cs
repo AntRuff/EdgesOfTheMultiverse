@@ -174,5 +174,93 @@ namespace MyModTest
 			DealDamage(mdp, eliza, 3, DamageType.Melee);
 			QuickHPCheck(-3);
 		}
+
+		[Test()]
+		public void TestRapidStrikes()
+		{
+			//{Eliza} deals up to 2 targets 2 melee damage
+			SetupGameController("BaronBlade", HeroNamespace, "Megalopolis");
+
+			StartGame();
+
+			PutIntoPlay("BladeBattalion");
+
+			// Targets Mobile Defense Platform and Blade Battalion
+			var mdp = GetCardInPlay("MobileDefensePlatform");
+			var bb = GetCardInPlay("BladeBattalion");
+			Card[] targets = { mdp, bb };
+
+			//Check 2 damage to 2 targets
+			DecisionSelectTargets = targets;
+			QuickHPStorage(mdp, bb, baron.CharacterCard);
+			var testCard = PutInHand(eliza, "RapidStrikes");
+			PlayCard(testCard);
+			QuickHPCheck(-2, -2, 0);
+			QuickHPCheckZero();
+
+			//Check select 1 target
+			Card[] targets2 = { mdp, null };
+			DecisionSelectTargets = targets2;
+			testCard = PutInHand(eliza, "RapidStrikes");
+			PlayCard(testCard);
+			QuickHPCheck(-2, 0, 0);
+			QuickHPCheckZero();
+
+			//Check no target
+			DecisionDoNotSelectCard = SelectionType.SelectTarget;
+			testCard = PutInHand(eliza, "RapidStrikes");
+			PlayCard(testCard);
+			QuickHPCheck(0, 0, 0);
+
+		}
+
+		[Test()]
+		public void TestSwiftIncapacitation()
+		{
+			SetupGameController("BaronBlade", HeroNamespace, "Megalopolis");
+
+			StartGame();
+
+			PutIntoPlay("BladeBattalion");
+
+			var mdp = GetCardInPlay("MobileDefensePlatform");
+			var bb = GetCardInPlay("BladeBattalion");
+			var testCard = PutInHand(eliza, "SwiftIncapacitation");
+
+			bb.SetHitPoints(2);
+			mdp.SetHitPoints(2);
+
+			// No targets selected
+			DecisionSelectCards = new Card[] { null, null};
+			PlayCard(testCard);
+			AssertIsInPlay(mdp);
+			AssertIsInPlay(bb);
+
+			ResetDecisions();
+
+			// Checks if card targeting is correct, and 2 card destroy
+			AssertNextDecisionChoices(new Card[] { mdp, bb }, new Card[] { baron.CharacterCard });
+			Card[] cards = { mdp, bb };
+			DecisionSelectCards = cards;
+			testCard = PutInHand(eliza, "SwiftIncapacitation");
+			PlayCard(testCard);
+			AssertInTrash(mdp);
+			AssertInTrash(bb);
+
+
+			ResetDecisions();
+
+			PutIntoPlay("BladeBattalion");
+			var bb2 = GetCardInPlay("BladeBattalion");
+			bb2.SetHitPoints(2);
+
+			// 1 card destroy
+			Card[] cards2 = { bb2, null};
+			DecisionSelectCards = cards2;
+			testCard = PutInHand(eliza, "SwiftIncapacitation");
+			PlayCard(testCard);
+			AssertInTrash(bb);
+
+		}
 	}
 }
