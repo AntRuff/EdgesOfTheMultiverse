@@ -144,7 +144,7 @@
     },
     {
       "identifier": "ArcaneArm",
-      "count": 3,
+      "count": 1,
       "title": "Arcane Arm",
       "keywords": [
         "equipment",
@@ -157,8 +157,7 @@
       ],
       "body": [
         "Reduce damage to this card by 1. When {Eliza} would be dealt damage, redirect that damage to this card.",
-        "This card can hold three Arcane Cells. If you play an Arcane Cell next to this card while 3 others are next to this card, destroy an Arcane Cell.",
-        "If this card leaves play, destroy all Arcane Cells in play."
+        "This card can hold three Arcane Cells. If you play an Arcane Cell next to this card while 3 others are next to this card, destroy a different Arcane Cell."
       ],
       "flavorQuotes": [
         {
@@ -171,7 +170,7 @@
     },
     {
       "identifier": "TelekineticCell",
-      "count": 2,
+      "count": 3,
       "title": "Telekinetic Cell",
       "keywords": [
         "equipment",
@@ -180,8 +179,8 @@
       "icons": "Manipulate",
       "body": [
         "Play this card next to an Arcane Arm in play.",
-        "Increase the number of Engraved Rapiers in play by 1.",
-        "When this would be destroyed, return an Engraved Rapier in play to your hand."
+        "Increase the number of Runic Rapiers that can be in play by 1.",
+        "When this would be destroyed, return a Runic Rapier in play to your hand."
       ],
       "flavorQuotes": [
         {
@@ -193,7 +192,7 @@
     },
     {
       "identifier": "ImpactCell",
-      "count": 2,
+      "count": 3,
       "title": "Impact Cell",
       "keywords": [
         "equipment",
@@ -218,7 +217,7 @@
     },
     {
       "identifier": "DeflectionCell",
-      "count": 2,
+      "count": 3,
       "title": "Deflection Cell",
       "keywords": [
         "equipment",
@@ -242,9 +241,9 @@
       "flavorReference": "Comic Series and Issue"
     },
     {
-      "identifier": "EngravedRapier",
+      "identifier": "RunicRapier",
       "count": 4,
-      "title": "Engraved Rapier",
+      "title": "Runic Rapier",
       "keywords": [
         "equipment"
       ],
@@ -265,12 +264,12 @@
       ],
       "flavorReference": "Comic Series and Issue",
       "powers": [
-        "{Eliza} deals 1 target 2 melee damage for each Engraved Rapier in play. You may destroy an Ongoing or Equipment card. If you do, destroy this card."
+        "{Eliza} deals X targets 2 melee damage where X is the number of Runic Rapiers in play."
       ]
     },
     {
       "identifier": "DeliberateTargeting",
-      "count": 3,
+      "count": 2,
       "title": "Deliberate Targeting",
       "keywords": [
         "ongoing",
@@ -350,11 +349,14 @@
     {
       "identifier": "ElizaCharacter",
       "promoIdentifer": "LastWatchElizaCharacter",
-
     },
     {
       "identifier": "ElizaCharacter",
-      "promoIdentifier": "NewCadetElizaCharacter",
+      "promoIdentifier": "AngelSlayerElizaCharacter",
+    },
+    {
+      "identifier": "ElizaCharacter",
+      "promoIdentifier": "MageKnightElizaCharacter",
     }
   ]
 }

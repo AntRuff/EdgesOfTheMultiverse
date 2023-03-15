@@ -43,8 +43,9 @@
     <Compile Include="Eliza\ArcaneArmCardController.cs" />
     <Compile Include="Eliza\BladeFlurryCardController.cs" />
     <Compile Include="Eliza\CaptureNotKillCardController.cs" />
+    <Compile Include="Eliza\ArcaneCellCardController.cs" />
     <Compile Include="Eliza\DeliberateTargetingCardController.cs" />
-    <Compile Include="Eliza\EngravedRapierCardController.cs" />
+    <Compile Include="Eliza\RunicRapierCardController.cs" />
     <Compile Include="Eliza\DeflectionCellCardController.cs" />
     <Compile Include="Eliza\ImapctCellCardController.cs" />
     <Compile Include="Eliza\TelekineticCellCardController.cs" />

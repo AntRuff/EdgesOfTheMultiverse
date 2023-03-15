@@ -15,9 +15,11 @@ namespace EdgesOfTheMultiverse.Eliza
 		{
 		}
 
-		public override IEnumerator Play()
+		public override void AddTriggers()
 		{
-			return base.Play();
+			AddReduceDamageTrigger((Card c) => c == base.Card, 1);
+			AddRedirectDamageTrigger((DealDamageAction dealDamage) => dealDamage.Target == base.CharacterCard, () => base.Card);
 		}
+		
 	}
 }
