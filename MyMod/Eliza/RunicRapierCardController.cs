@@ -12,7 +12,6 @@ namespace EdgesOfTheMultiverse.Eliza
 	public class RunicRapierCardController : CardController
 	{
 
-		
 		public RunicRapierCardController(Card card, TurnTakerController turnTakerController):base(card, turnTakerController) 
 		{
 		}
@@ -65,7 +64,7 @@ namespace EdgesOfTheMultiverse.Eliza
 			IEnumerable<Card> rapiers = FindCardsWhere((Card c) => c.IsInPlay && c.Identifier == "RunicRapier");
 
 			IEnumerator e = base.GameController.SelectTargetsAndDealDamage(this.HeroTurnTakerController, new DamageSource(base.GameController, base.CharacterCard),
-				damage, DamageType.Melee, rapiers.Count(), true, 1, cardSource: base.GetCardSource());
+				damage, DamageType.Melee, rapiers.Count(), false, 1, cardSource: base.GetCardSource());
 			if (base.UseUnityCoroutines)
 			{
 				yield return base.GameController.StartCoroutine(e);

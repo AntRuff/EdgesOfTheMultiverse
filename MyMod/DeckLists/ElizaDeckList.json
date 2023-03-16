@@ -157,7 +157,8 @@
       ],
       "body": [
         "Reduce damage to this card by 1. When {Eliza} would be dealt damage, redirect that damage to this card.",
-        "This card can hold three Arcane Cells. If you play an Arcane Cell next to this card while 3 others are next to this card, destroy a different Arcane Cell."
+        "Up to 3 Arcane Cells may be played next to this card at a time. If you play an Arcane Cell next to this card while 3 others are next to this card, destroy a different Arcane Cell.",
+        "When this card is destroyed, destroy all Arcane Cells next to it."
       ],
       "flavorQuotes": [
         {

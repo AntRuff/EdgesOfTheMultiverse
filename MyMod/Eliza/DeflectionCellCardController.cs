@@ -18,10 +18,11 @@ namespace EdgesOfTheMultiverse.Eliza
 		public override void AddTriggers()
 		{
 			AddReduceDamageTrigger((Card c) => c.Identifier == "ArcaneArm", 1);
-			AddAfterLeavesPlayAction(WhenLeavesPlay);
+			AddIfTheTargetThatThisCardIsNextToLeavesPlayDestroyThisCardTrigger();
+			AddAfterLeavesPlayAction(WhenLeavesPlay, TriggerType.DrawCard);
 		}
 
-		public override IEnumerator WhenLeavesPlay()
+		public override IEnumerator WhenLeavesPlay(GameAction ga)
 		{
 			IEnumerator e = base.GameController.DrawCard(base.HeroTurnTaker, true);
 			if (base.UseUnityCoroutines)

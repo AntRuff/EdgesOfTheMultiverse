@@ -33,7 +33,7 @@ namespace EdgesOfTheMultiverse.Eliza
 		public abstract override void AddTriggers();
 
 		//Leave play effect
-		public abstract IEnumerator WhenLeavesPlay();
+		public abstract IEnumerator WhenLeavesPlay(GameAction ga);
 
 		//If three cells are in play, destroys one in play.
 		public override IEnumerator Play()

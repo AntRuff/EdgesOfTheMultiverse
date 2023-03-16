@@ -17,10 +17,11 @@ namespace EdgesOfTheMultiverse.Eliza
 		// Rapier Max handled in Rapier. Return Rapier to hand when it leaves play.
 		public override void AddTriggers()
 		{
-			AddAfterLeavesPlayAction(WhenLeavesPlay);
+			AddIfTheTargetThatThisCardIsNextToLeavesPlayDestroyThisCardTrigger();
+			AddAfterLeavesPlayAction(WhenLeavesPlay, TriggerType.MoveCard);
 		}
 
-		public override IEnumerator WhenLeavesPlay()
+		public override IEnumerator WhenLeavesPlay(GameAction ga)
 		{
 			IEnumerator e = base.GameController.SelectAndReturnCards(this.HeroTurnTakerController, 1,
 				new LinqCardCriteria((Card c) => c.Identifier == "RunicRapier"), true, false, false, 1, cardSource: base.GetCardSource());

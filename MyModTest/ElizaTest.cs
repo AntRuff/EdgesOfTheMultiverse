@@ -260,7 +260,253 @@ namespace MyModTest
 			testCard = PutInHand(eliza, "SwiftIncapacitation");
 			PlayCard(testCard);
 			AssertInTrash(bb);
-
 		}
+
+		//Tests damage redirection
+		[Test()]
+		public void TestArcaneArmNoCells()
+		{
+			SetupGameController("BaronBlade", HeroNamespace, "Megalopolis");
+
+			StartGame();
+
+			var aa = PutIntoPlay("ArcaneArm");
+			var mdp = GetCardInPlay("MobileDefensePlatform");
+
+			QuickHPStorage(mdp, aa, eliza.CharacterCard);
+			DealDamage(mdp, eliza, 3, DamageType.Melee);
+			QuickHPCheck(0, -2, 0);
+		}
+
+		//Tests playing Arcane Cells
+		[Test()]
+		public void TestArcaneArmPlayCells()
+		{
+			SetupGameController("BaronBlade", HeroNamespace, "Megalopolis");
+
+			StartGame();
+
+			var aa = PutIntoPlay("ArcaneArm");
+
+			GoToPlayCardPhase(eliza);
+
+			var dc = PutInHand(eliza, "DeflectionCell");
+			PlayCard(dc);
+			AssertNextToCard(dc, aa);
+
+			var ic = PutInHand(eliza, "ImpactCell");
+			PlayCard(ic);
+			AssertNextToCard(ic, aa);
+
+			var tc = PutInHand(eliza, "TelekineticCell");
+			PlayCard(tc);
+			AssertNextToCard(tc, aa);
+
+			//Test playing cell when 3 are already in play.
+			var tc2 = PutInHand(eliza, "TelekineticCell");
+			DecisionSelectCard = tc;
+			PlayCard(tc2);
+			AssertNextToCard(tc2, aa);
+			AssertInTrash(tc);
+
+			//Destroy Arm to destroy cells
+			ResetDecisions();
+			DestroyCard("ArcaneArm");
+
+			AssertInTrash(aa, dc, ic, tc2);
+		}
+
+		//Test Deflection Cell interactions
+		[Test()]
+		public void TestDeflectionCell()
+		{
+			SetupGameController("BaronBlade", HeroNamespace, "Megalopolis");
+
+			StartGame();
+
+			var aa = PutIntoPlay("ArcaneArm");
+			var mdp = GetCardInPlay("MobileDefensePlatform");
+
+			GoToPlayCardPhase(eliza);
+
+			var dc = PutInHand(eliza, "DeflectionCell");
+			PlayCard(dc);
+
+			//Reduce damage
+			QuickHPStorage(mdp, aa, eliza.CharacterCard);
+			DealDamage(mdp, eliza, 3, DamageType.Melee);
+			QuickHPCheck(0, -1, 0);
+
+			dc = PutInHand(eliza, "DeflectionCell");
+			PlayCard(dc);
+
+			QuickHPStorage(mdp, aa, eliza.CharacterCard);
+			DealDamage(mdp, eliza, 3, DamageType.Melee);
+			QuickHPCheck(0, 0, 0);
+
+			//Destroy Deflection cell and draw a card.
+			QuickHandStorage(eliza.ToHero());
+			DestroyCard(dc);
+			QuickHandCheck(1);
+		}
+
+		//Test Impact Cell
+		[Test()]
+		public void TestImpactCell()
+		{
+			SetupGameController("BaronBlade", HeroNamespace, "Megalopolis");
+
+			StartGame();
+
+			var aa = PutIntoPlay("ArcaneArm");
+			var mdp = GetCardInPlay("MobileDefensePlatform");
+
+			GoToPlayCardPhase(eliza);
+
+			var ic = PutInHand(eliza, "ImpactCell");
+			PlayCard(ic);
+
+			//Increase Damage
+			QuickHPStorage(mdp, aa, eliza.CharacterCard);
+			DealDamage(eliza, mdp, 3, DamageType.Melee);
+			QuickHPCheck(-4, 0, 0);
+
+			var ic2 = PutInHand(eliza, "ImpactCell");
+			PlayCard(ic2);
+
+			QuickHPStorage(mdp, aa, eliza.CharacterCard);
+			DealDamage(eliza, mdp, 3, DamageType.Melee);
+			QuickHPCheck(-5, 0, 0);
+
+			SetHitPoints(mdp, 10);
+
+			//Destroy cell and deal damage.
+			QuickHPStorage(mdp, aa, eliza.CharacterCard);
+			DecisionSelectTarget = mdp;
+			DestroyCard(ic2);
+			QuickHPCheck(-3, 0, 0);
+		}
+
+		//Test Single Rapier Passive and Power
+		[Test()]
+		public void TestSingleRunicRapier()
+		{
+			SetupGameController("BaronBlade", HeroNamespace, "Megalopolis");
+
+			StartGame();
+
+			var mdp = GetCardInPlay("MobileDefensePlatform");
+
+			GoToPlayCardPhase(eliza);
+
+			var rr = PutInHand(eliza, "RunicRapier");
+			var rr2 = PutInHand(eliza, "RunicRapier");
+
+			PlayCard(rr);
+			PlayCard(rr2); //Should fail to play
+
+			QuickHPStorage(mdp);
+			DecisionSelectTargets = new Card[] { mdp, mdp};
+			UsePower(rr);
+			QuickHPCheck(-3);
+		}
+
+		//Test playing multiple Rapiers and Telekinetic Cell interaction
+		[Test()]
+		public void TestMultipleRunicRapiersAndTelekineticCells()
+		{
+			SetupGameController("BaronBlade", HeroNamespace, "Megalopolis");
+
+			StartGame();
+
+			var mdp = GetCardInPlay("MobileDefensePlatform");
+
+			GoToPlayCardPhase(eliza);
+
+			DiscardAllCards(eliza);
+
+			var aa = PutIntoPlay("ArcaneArm");
+
+			var rr = PutInHand(eliza, "RunicRapier");
+			var rr2 = PutInHand(eliza, "RunicRapier");
+			var rr3 = PutInHand(eliza, "RunicRapier");
+			var rr4 = PutInHand(eliza, "RunicRapier");
+
+			var tc = PutInHand(eliza, "TelekineticCell");
+			var tc2 = PutInHand(eliza, "TelekineticCell");
+			var tc3 = PutInHand(eliza, "TelekineticCell");
+
+			PlayCard(rr);
+			PlayCard(rr2); //Should fail to play
+
+			PlayCard(tc);
+			PlayCard(rr2); //Should now succeed
+
+			PlayCard(tc2);
+			PlayCard(tc3);
+			PlayCard(rr3);
+			PlayCard(rr4);
+
+			//Deal 1 damage and 4 triggers
+			QuickHPStorage(mdp);
+			DecisionSelectTargets = new Card[] { mdp, mdp, mdp, mdp };
+			DealDamage(eliza, mdp, 1, DamageType.Melee);
+			QuickHPCheck(-5);
+
+			ResetDecisions();
+
+			SetHitPoints(mdp, 10);
+
+			var bb = PutIntoPlay("BladeBattalion");
+			var bb2 = PutIntoPlay("BladeBattalion");
+			var bb3 = PutIntoPlay("BladeBattalion");
+
+			//4 Rapier power
+			QuickHPStorage(mdp, bb, bb2, bb3);
+			DecisionSelectTargets = new Card[] { mdp, bb, bb2, bb3 };
+			UsePower(rr);
+			QuickHPCheck(-2, -2, -2, -2);
+
+			ResetDecisions();
+
+			//4 Rapier power, choose 2 targets
+			QuickHPStorage(mdp, bb, bb2, bb3);
+			DecisionSelectTargets = new Card[] { mdp, bb, null, null};
+			UsePower(rr);
+			QuickHPCheck(-2, -2, 0, 0);
+
+			GoToStartOfTurn(eliza);
+
+			ResetDecisions();
+
+			//Check first time dealing damage reset
+			QuickHPStorage(mdp);
+			DecisionSelectTargets = new Card[] { mdp, mdp, mdp, mdp };
+			DealDamage(eliza, mdp, 1, DamageType.Melee);
+			QuickHPCheck(-5);
+
+			ResetDecisions();
+
+			//Check destroy Telekinetic Cell
+			DecisionSelectCard = rr2;
+			DestroyCard(tc);
+			AssertInTrash(tc);
+			AssertInHand(rr2);
+
+			ResetDecisions();
+
+			// Check move Telekinetic Cell
+			DecisionSelectCard = rr3;
+			PutInHand(tc2);
+			AssertInHand(tc2);
+			AssertInHand(rr3);
+
+			//Check plays after losing Telekinetic Cells and played from deck.
+			PlayCard(rr3); //Should fail to play card
+			PlayTopCard(eliza);
+			PutOnDeck(eliza, rr2);
+			PlayTopCard(eliza); //Should fail to play card
+		}
+		
 	}
 }

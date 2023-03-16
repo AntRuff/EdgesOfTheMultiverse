@@ -18,10 +18,11 @@ namespace EdgesOfTheMultiverse.Eliza
 		public override void AddTriggers()
 		{
 			AddIncreaseDamageTrigger((DealDamageAction dd) => dd.DamageSource.IsSameCard(base.CharacterCard), 1);
-			AddAfterLeavesPlayAction(WhenLeavesPlay);
+			AddIfTheTargetThatThisCardIsNextToLeavesPlayDestroyThisCardTrigger();
+			AddBeforeLeavesPlayAction(WhenLeavesPlay, TriggerType.DealDamage);
 		}
 		
-		public override IEnumerator WhenLeavesPlay()
+		public override IEnumerator WhenLeavesPlay(GameAction ga)
 		{
 			IEnumerator e = base.GameController.SelectTargetsAndDealDamage(this.HeroTurnTakerController, new DamageSource(base.GameController, base.CharacterCard),
 				2, DamageType.Fire, 1, false, 1, cardSource: base.GetCardSource());
