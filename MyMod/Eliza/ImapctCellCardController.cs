@@ -9,15 +9,30 @@ using Handelabra.Sentinels.Engine.Model;
 
 namespace EdgesOfTheMultiverse.Eliza
 {
-	public class ImpactCellCardController: CardController
+	public class ImpactCellCardController: ArcaneCellCardController
 	{
 		public ImpactCellCardController(Card card, TurnTakerController turnTakerController):base(card, turnTakerController) 
 		{ 
 		}
-
-		public override IEnumerator Play()
+		//Increases Eliza damage by 1, deal 1 target 2 damage when leaves play
+		public override void AddTriggers()
 		{
-			return base.Play();
+			AddIncreaseDamageTrigger((DealDamageAction dd) => dd.DamageSource.IsSameCard(base.CharacterCard), 1);
+			AddAfterLeavesPlayAction(WhenLeavesPlay);
+		}
+		
+		public override IEnumerator WhenLeavesPlay()
+		{
+			IEnumerator e = base.GameController.SelectTargetsAndDealDamage(this.HeroTurnTakerController, new DamageSource(base.GameController, base.CharacterCard),
+				2, DamageType.Fire, 1, false, 1, cardSource: base.GetCardSource());
+			if (base.UseUnityCoroutines)
+			{
+				yield return base.GameController.StartCoroutine(e);
+			}
+			else
+			{
+				base.GameController.ExhaustCoroutine(e);
+			}
 		}
 	}
 }

@@ -14,6 +14,7 @@ namespace EdgesOfTheMultiverse.Eliza
 		protected List<ITrigger> _triggers;
 		public ArcaneCellCardController(Card card, TurnTakerController turnTakerController): base(card, turnTakerController) { }
 
+		//Play next to Arcane Arm
 		public override IEnumerator DeterminePlayLocation(List<MoveCardDestination> storedResults, bool isPutIntoPlay, List<IDecision> decisionSources,
 			Location overridePlayArea = null, LinqTurnTakerCriteria additionalturnTakerCriteria = null)
 		{
@@ -28,10 +29,13 @@ namespace EdgesOfTheMultiverse.Eliza
 			}
 		}
 
+		//Passive effects of the cell and Leave Play trigger
 		public abstract override void AddTriggers();
 
+		//Leave play effect
 		public abstract IEnumerator WhenLeavesPlay();
 
+		//If three cells are in play, destroys one in play.
 		public override IEnumerator Play()
 		{
 			if (FindCardsWhere((Card c) => c.IsInPlay && c.DoKeywordsContain("arcane cell") && c != base.Card).Count() >= 3)

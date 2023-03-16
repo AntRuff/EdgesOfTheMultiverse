@@ -9,15 +9,29 @@ using Handelabra.Sentinels.Engine.Model;
 
 namespace EdgesOfTheMultiverse.Eliza
 {
-	public class TelekineticCellCardController : CardController
+	public class TelekineticCellCardController : ArcaneCellCardController
 	{
 		public TelekineticCellCardController(Card card, TurnTakerController turnTakerController):base(card, turnTakerController)
 		{
 		}
-
-		public override IEnumerator Play()
+		// Rapier Max handled in Rapier. Return Rapier to hand when it leaves play.
+		public override void AddTriggers()
 		{
-			return base.Play();
+			AddAfterLeavesPlayAction(WhenLeavesPlay);
+		}
+
+		public override IEnumerator WhenLeavesPlay()
+		{
+			IEnumerator e = base.GameController.SelectAndReturnCards(this.HeroTurnTakerController, 1,
+				new LinqCardCriteria((Card c) => c.Identifier == "RunicRapier"), true, false, false, 1, cardSource: base.GetCardSource());
+			if (base.UseUnityCoroutines)
+			{
+				yield return base.GameController.StartCoroutine(e);
+			}
+			else
+			{
+				base.GameController.ExhaustCoroutine(e);
+			}
 		}
 	}
 }

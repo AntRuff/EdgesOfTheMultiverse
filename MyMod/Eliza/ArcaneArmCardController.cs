@@ -15,6 +15,7 @@ namespace EdgesOfTheMultiverse.Eliza
 		{
 		}
 
+		//Redirect Eliza damage and decrease it by 1.
 		public override void AddTriggers()
 		{
 			AddReduceDamageTrigger((Card c) => c == base.Card, 1);

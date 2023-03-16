@@ -23,7 +23,7 @@
         "DrawCardNow",
         "DealDamage<Melee>"
       ],
-      "hitpoints": 24,
+      "hitpoints": 22,
       "nemisisIdentifiers": [
         "EdgesOfTheMultiverse.Eliza"
       ],
@@ -180,7 +180,7 @@
       "body": [
         "Play this card next to an Arcane Arm in play.",
         "Increase the number of Runic Rapiers that can be in play by 1.",
-        "When this would be destroyed, return a Runic Rapier in play to your hand."
+        "When this card would leave play, return a Runic Rapier in play to your hand."
       ],
       "flavorQuotes": [
         {
@@ -205,7 +205,7 @@
       "body": [
         "Play this card next to an Arcane Arm in play.",
         "Increase the damage dealt by {Eliza} by one.",
-        "When this would be destroyed, {Eliza} deals 1 target 2 fire damage."
+        "When this card would leave play, {Eliza} deals 1 target 2 fire damage."
       ],
       "flavorQuotes": [
         {
@@ -230,7 +230,7 @@
       "body": [
         "Play this card next to an Arcane Arm in play.",
         "Reduce the damage taken by the Arcane Arm by 1.",
-        "When this would be destroyed, you may draw a card."
+        "When this card would be leave play, you may draw a card."
       ],
       "flavorQuotes": [
         {
@@ -264,7 +264,7 @@
       ],
       "flavorReference": "Comic Series and Issue",
       "powers": [
-        "{Eliza} deals X targets 2 melee damage where X is the number of Runic Rapiers in play."
+        "{Eliza} deals up to X targets 2 melee damage where X is the number of Runic Rapiers in play."
       ]
     },
     {
