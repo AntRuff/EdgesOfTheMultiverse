@@ -501,6 +501,8 @@ namespace MyModTest
 			AssertInHand(tc2);
 			AssertInHand(rr3);
 
+			ResetDecisions();
+
 			//Check plays after losing Telekinetic Cells and played from deck.
 			PlayCard(rr3); //Should fail to play card
 			PlayTopCard(eliza);
@@ -508,5 +510,122 @@ namespace MyModTest
 			PlayTopCard(eliza); //Should fail to play card
 		}
 		
+		[Test()]
+		public void TestCallForArmsRapier()
+		{
+			SetupGameController("BaronBlade", HeroNamespace, "Megalopolis");
+
+			StartGame();
+
+			PutInTrash("RunicRapier");
+
+			GoToPlayCardPhase(eliza);
+			DecisionSelectLocation = new LocationChoice(eliza.HeroTurnTaker.Deck);
+			var rapier = eliza.HeroTurnTaker.Deck.Cards.First((Card c) => c.Identifier == "RunicRapier");
+			var ca = PutInHand(eliza, "CallForArms");
+			var rs = PutInHand(eliza, "RapidStrikes");
+			DecisionSelectCards = new Card[]{ rapier, rs, null};
+
+			QuickShuffleStorage(eliza);
+			QuickHandStorage(eliza.ToHero());
+			PlayCard(ca);
+			QuickHandCheck(0);
+			QuickShuffleCheck(1);
+			AssertInHand(eliza, rapier);
+			AssertInTrash(ca, rs);
+		}
+
+		[Test()]
+		public void TestCallForArmsArcaneNoPlay()
+		{
+			SetupGameController("BaronBlade", HeroNamespace, "Megalopolis");
+
+			StartGame();
+
+			var aa = PutInTrash("ArcaneArm");
+
+			GoToPlayCardPhase(eliza);
+			DecisionSelectLocation = new LocationChoice(eliza.HeroTurnTaker.Trash);
+			var ca = PutInHand(eliza, "CallForArms");
+			DecisionSelectCard = aa;
+			DecisionDoNotSelectCard = SelectionType.PlayCard;
+
+			QuickShuffleStorage(eliza);
+			QuickHandStorage(eliza.ToHero());
+			PlayCard(ca);
+			QuickHandCheck(1);
+			QuickShuffleCheck(0);
+			AssertInHand(eliza, aa);
+			AssertInTrash(ca);
+		}
+
+		[Test()]
+		public void TestChargeTheArcaneCellsPlayNoArm()
+		{
+			SetupGameController("BaronBlade", HeroNamespace, "Megalopolis");
+
+			StartGame();
+
+			var cc = PutInHand("ChargeTheArcaneCells");
+
+			GoToPlayCardPhase(eliza);
+			var ic = eliza.HeroTurnTaker.Deck.Cards.First((Card c) => c.Identifier == "ImpactCell");
+			DecisionMoveCardDestination = new MoveCardDestination(eliza.HeroTurnTaker.PlayArea);
+			DecisionSelectCard = ic;
+
+			QuickShuffleStorage(eliza);
+			QuickHandStorage(eliza.ToHero());
+			PlayCard(cc);
+			QuickHandCheck(-1);
+			QuickShuffleCheck(1);
+			AssertInTrash(cc, ic);
+		}
+
+		[Test()]
+		public void TestChargeTheArcaneCellsPlayArm()
+		{
+			SetupGameController("BaronBlade", HeroNamespace, "Megalopolis");
+
+			StartGame();
+
+			var aa = PutIntoPlay("ArcaneArm");
+			var cc = PutInHand("ChargeTheArcaneCells");
+
+			GoToPlayCardPhase(eliza);
+			var ic = eliza.HeroTurnTaker.Deck.Cards.First((Card c) => c.Identifier == "ImpactCell");
+			DecisionMoveCardDestination = new MoveCardDestination(eliza.HeroTurnTaker.PlayArea);
+			DecisionSelectCard = ic;
+
+			QuickShuffleStorage(eliza);
+			QuickHandStorage(eliza.ToHero());
+			PlayCard(cc);
+			QuickHandCheck(-1);
+			QuickShuffleCheck(1);
+			AssertNextToCard(ic, aa);
+			AssertInTrash(cc);
+		}
+
+		[Test()]
+		public void TestChargeTheArcaneCellsHand()
+		{
+			SetupGameController("BaronBlade", HeroNamespace, "Megalopolis");
+
+			StartGame();
+
+			var cc = PutInHand("ChargeTheArcaneCells");
+
+			GoToPlayCardPhase(eliza);
+			var ic = eliza.HeroTurnTaker.Deck.Cards.First((Card c) => c.Identifier == "ImpactCell");
+			DecisionMoveCardDestination = new MoveCardDestination(eliza.HeroTurnTaker.Hand);
+			DecisionSelectCard = ic;
+
+			QuickShuffleStorage(eliza);
+			QuickHandStorage(eliza.ToHero());
+			PlayCard(cc);
+			QuickHandCheck(0);
+			QuickShuffleCheck(1);
+			AssertInTrash(cc);
+			AssertInHand(ic);
+		}
 	}
 }

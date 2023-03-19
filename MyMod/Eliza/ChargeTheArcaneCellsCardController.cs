@@ -17,7 +17,15 @@ namespace EdgesOfTheMultiverse.Eliza
 
 		public override IEnumerator Play()
 		{
-			return base.Play();
+			IEnumerator e = SearchForCards(base.HeroTurnTakerController, searchDeck: true, searchTrash: false, 1, 1, new LinqCardCriteria((Card c) => c.DoKeywordsContain("arcane cell")), putIntoPlay: true, putInHand: true, putOnDeck: false);
+			if (base.UseUnityCoroutines)
+			{
+				yield return base.GameController.StartCoroutine(e);
+			}
+			else
+			{
+				base.GameController.ExhaustCoroutine(e);
+			}
 		}
 	}
 }
