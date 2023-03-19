@@ -15,9 +15,46 @@ namespace EdgesOfTheMultiverse.Eliza
 		{
 		}
 
-		public override IEnumerator Play()
+		public override void AddTriggers()
 		{
-			return base.Play();
+			AddTrigger((DestroyCardAction dc) => !base.GameController.IsCardIndestructible(dc.CardToDestroy.Card) && !dc.CardToDestroy.Card.IsCharacter && dc.CardToDestroy.Card.IsTarget, MoveInsteadResponse, 
+				TriggerType.MoveCard, TriggerTiming.Before);
+		}
+
+		private IEnumerator MoveInsteadResponse(DestroyCardAction dc)
+		{
+			IEnumerator e = CancelAction(dc);
+			if (base.UseUnityCoroutines)
+			{
+				yield return base.GameController.StartCoroutine(e);
+			}
+			else
+			{
+				base.GameController.ExhaustCoroutine(e);
+			}
+
+			e = base.GameController.MoveCard(base.TurnTakerController, dc.CardToDestroy.Card, dc.CardToDestroy.Card.Owner.Deck, toBottom: true, isPutIntoPlay: false, playCardIfMovingToPlayArea: true, null, cardSource: GetCardSource());
+			if (base.UseUnityCoroutines)
+			{
+				yield return base.GameController.StartCoroutine(e);
+			}
+			else
+			{
+				base.GameController.ExhaustCoroutine(e);
+			}
+		}
+
+		public override IEnumerator UsePower(int index = 0)
+		{
+			IEnumerator e = base.GameController.DestroyCard(base.HeroTurnTakerController, base.Card, false);
+			if (base.UseUnityCoroutines)
+			{
+				yield return base.GameController.StartCoroutine(e);
+			}
+			else
+			{
+				base.GameController.ExhaustCoroutine(e);
+			}
 		}
 	}
 }
