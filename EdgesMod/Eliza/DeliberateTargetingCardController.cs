@@ -15,33 +15,9 @@ namespace EdgesOfTheMultiverse.Eliza
 		{ 
 		}
 
-
-		public override void AddTriggers()
+		public override IEnumerator Play()
 		{
-			AddMakeDamageNotRedirectableTrigger((DealDamageAction dd) => dd.DamageSource.IsSameCard(base.CharacterCard));
-		}
-
-		public override IEnumerator UsePower(int index = 0)
-		{
-			IEnumerator e = DealDamage(base.CharacterCard, (Card c) => c.IsTarget, 1, DamageType.Melee);
-			if (base.UseUnityCoroutines)
-			{
-				yield return base.GameController.StartCoroutine(e);
-			}
-			else
-			{
-				base.GameController.ExhaustCoroutine(e);
-			}
-
-			e = base.GameController.DestroyCard(base.HeroTurnTakerController, base.Card, false);
-			if (base.UseUnityCoroutines)
-			{
-				yield return base.GameController.StartCoroutine(e);
-			}
-			else
-			{
-				base.GameController.ExhaustCoroutine(e);
-			}
+			return base.Play();
 		}
 	}
 }
