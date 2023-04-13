@@ -61,13 +61,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DeckLists\MigrantCoderDeckList.json" />
-    <EmbeddedResource Include="DeckLists\TheBaddiesDeckList.json" />
-    <EmbeddedResource Include="DeckLists\DevStreamDeckList.json" />
-    <EmbeddedResource Include="DeckLists\TheHugMonsterTeamDeckList.json" />
-    <EmbeddedResource Include="DeckLists\PromoCardList.json" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="DeckLists\ElizaDeckList.json" />
   </ItemGroup>
   <ItemGroup />
