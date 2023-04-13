@@ -56,11 +56,11 @@
       "body": "{Eliza} deals 1 target 2 melee damage. {Eliza} reduces the next damage she would take by 1.",
       "flavorQuotes": [
         {
-          "identifier": "Character",
-          "text": "Flavor Text"
+          "identifier": "Eliza",
+          "text": "Defense is just as valuable as offense. Best to be prepared to use both."
         }
       ],
-      "flavorReference": "Comic Series and Issue"
+      "flavorReference": "Trials of the Watch Captains #2"
     },
     {
       "identifier": "RapidStrikes",
@@ -75,11 +75,11 @@
       "body": "{Eliza} deals up to 2 targets 2 melee damage each.",
       "flavorQuotes": [
         {
-          "identifier": "Character",
-          "text": "Flavor Text"
+          "identifier": "Sylvester",
+          "text": "I can barely follow her attacks. At least they not aimed at me."
         }
       ],
-      "flavorReference": "Comic Series and Issue"
+      "flavorReference": "Trials of the Watch Captains #1"
     },
     {
       "identifier": "SwiftIncapacitation",
@@ -94,11 +94,11 @@
       "body": "You may destroy up to 2 targets with 2 or less HP.",
       "flavorQuotes": [
         {
-          "identifier": "Character",
-          "text": "Flavor Text"
+          "identifier": "Eliza",
+          "text": "You would be surprised how often I need more than one set of manacles."
         }
       ],
-      "flavorReference": "Comic Series and Issue"
+      "flavorReference": "Trials of the Watch Captains #5"
     },
     {
       "identifier": "CallForArms",
@@ -119,11 +119,11 @@
       ],
       "flavorQuotes": [
         {
-          "identifier": "Character",
-          "text": "Flavor Text"
+          "identifier": "Eliza",
+          "text": "This is why I keep backups."
         }
       ],
-      "flavorReference": "Comic Series and Issue"
+      "flavorReference": "Trials of the Watch Captains #3"
     },
     {
       "identifier": "ChargeTheArcaneCells",
@@ -140,11 +140,11 @@
       "body": "Search your deck for an Arcane Cell. You may put it into play or your hand. Shuffle your deck.",
       "flavorQuotes": [
         {
-          "identifier": "Character",
-          "text": "Flavor Text"
+          "identifier": "Eliza",
+          "text": "Just put this here and... now the magic has a focus."
         }
       ],
-      "flavorReference": "Comic Series and Issue"
+      "flavorReference": "Trials of the Watch Captains #5"
     },
     {
       "identifier": "ArcaneArm",
@@ -166,11 +166,11 @@
       ],
       "flavorQuotes": [
         {
-          "identifier": "Character",
-          "text": "Flavor Text"
+          "identifier": "Eliza",
+          "text": "Even if you replace what is lost, it will never act the same. Be the same. You will always need to adapt."
         }
       ],
-      "flavorReference": "Comic Series and Issue",
+      "flavorReference": "Trials of the Watch Captains #8",
       "hitpoints": 6
     },
     {
@@ -189,11 +189,11 @@
       ],
       "flavorQuotes": [
         {
-          "identifier": "Character",
-          "text": "Flavor Text"
+          "identifier": "Eliza",
+          "text": "Who said I only had one floating sword?"
         }
       ],
-      "flavorReference": "Comic Series and Issue"
+      "flavorReference": "Trials of the Watch Captain #6"
     },
     {
       "identifier": "ImpactCell",
@@ -214,11 +214,11 @@
       ],
       "flavorQuotes": [
         {
-          "identifier": "Character",
-          "text": "Flavor Text"
+          "identifier": "Sylvester",
+          "text": "Careful, any more force and your weapons are likely to snap."
         }
       ],
-      "flavorReference": "Comic Series and Issue"
+      "flavorReference": "Trials of the Watch Captain #4"
     },
     {
       "identifier": "DeflectionCell",
@@ -239,11 +239,11 @@
       ],
       "flavorQuotes": [
         {
-          "identifier": "Character",
-          "text": "Flavor Text"
+          "identifier": "Thug",
+          "text": "Take that! *dink* Not good, not good, not good!"
         }
       ],
-      "flavorReference": "Comic Series and Issue"
+      "flavorReference": "Trials of the Watch Captain #1"
     },
     {
       "identifier": "RunicRapier",
@@ -263,11 +263,11 @@
       ],
       "flavorQuotes": [
         {
-          "identifier": "Character",
-          "text": "Flavor Text"
+          "identifier": "The Quartermaster",
+          "text": "Let me guess; another batch of rapiers, no knuckle guard, no decal, and primed for an enchanter. *sigh* You know the price. "
         }
       ],
-      "flavorReference": "Comic Series and Issue",
+      "flavorReference": "Trials of the Watch Captains #10",
       "powers": [
         "{Eliza} deals up to X targets 2 melee damage where X is the number of Runic Rapiers in play."
       ]
@@ -289,11 +289,11 @@
       "body": "Damage dealt by {Eliza} can't be redirected.",
       "flavorQuotes": [
         {
-          "identifier": "Character",
-          "text": "Flavor Text"
+          "identifier": "Eliza",
+          "text": "Knowing where to strike is just as important as knowing when to strike."
         }
       ],
-      "flavorReference": "Comic Series and Issue",
+      "flavorReference": "Trials of the Watch Captains #2",
       "powers": [
         "{Eliza} deals each target 1 melee damage and destroy this card."
       ]
@@ -318,11 +318,11 @@
       ],
       "flavorQuotes": [
         {
-          "identifier": "Character",
-          "text": "Flavor Text"
+          "identifier": "Sylvester",
+          "text": "Before you go on with your tough guy act, you might want to check how any times she stabbed ya."
         }
       ],
-      "flavorReference": "Comic Series and Issue"
+      "flavorReference": "Trials of the Watch Captains #6"
     },
     {
       "identifier": "CaptureNotKill",
@@ -340,17 +340,21 @@
       "body": "When {Eliza} would destroy a non-Character target, instead place them on the bottom of their associated deck.",
       "flavorQuotes": [
         {
-          "identifier": "Character",
-          "text": "Flavor Text"
+          "identifier": "Eliza",
+          "text": "You will be fine. Once they finish up with questioning, they will have a priest come and check on your hamstrings."
         }
       ],
-      "flavorReference": "Comic Series and Issue",
+      "flavorReference": "Trials of the Watch Captains #1",
       "powers": [
         "Destroy this card."
       ]
     }
-  ],
-  "promoCards": [
+  ]
+
+}
+
+
+/*"promoCards": [
     {
       "identifier": "ElizaCharacter",
       "promoIdentifer": "LastWatchElizaCharacter",
@@ -363,5 +367,4 @@
       "identifier": "ElizaCharacter",
       "promoIdentifier": "MageKnightElizaCharacter",
     }
-  ]
-}
+  ]*/

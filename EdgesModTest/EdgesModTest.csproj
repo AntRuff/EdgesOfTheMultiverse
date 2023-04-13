@@ -48,20 +48,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ElizaTest.cs" />
-    <Compile Include="TestTemplate.cs" />
     <Compile Include="Test.cs" />
     <Compile Include="BaseTest.cs" />
     <Compile Include="Setup.cs" />
-    <Compile Include="VariantTest.cs" />
-    <Compile Include="MigrantCoderTest.cs" />
     <Compile Include="RandomGameTest.cs" />
-    <Compile Include="MyRandomTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MyMod\MyMod.csproj">
+    <ProjectReference Include="..\EdgesMod\EdgesMod.csproj">
       <Project>{44F8C838-553C-482C-B389-2B375B8590C9}</Project>
       <Name>MyMod</Name>
     </ProjectReference>
