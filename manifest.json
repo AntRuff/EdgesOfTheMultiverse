@@ -1,0 +1,20 @@
+{
+    "title" : "EdgesOfTheMultiverse",
+    "author" : "RagingKey",
+    "description": [
+        "Edges of The Multiverse is a fan-made expansion created by Anthony Ruffalo for Sentinels of the Multiverse.",
+        "The modification includes new decks for standard gameplay."
+    ],
+    "version": "v1.0.0",
+    "color": "2a3273",
+    "credits" : [
+        "<b>Software Development:</b> RagingKey"
+    ],
+    "namespace": "EdgesOfTheMultiverse",
+    "dll" : "EdgesMod.dll",
+    "decks:" : {
+        "heroes":[
+            "Eliza"
+        ]
+    }
+}
