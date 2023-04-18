@@ -263,11 +263,11 @@
       ],
       "flavorQuotes": [
         {
-          "identifier": "The Quartermaster",
-          "text": "Let me guess; another batch of{BR}rapiers, no knuckle guard, no decal,{BR}and primed for an enchanter.{BR}*sigh* You know the price."
+          "identifier": "Quartermaster",
+          "text": "Let me guess; another batch of{BR}rapiers, no knuckle guard, no decal,{BR}and primed for an enchanter. *sigh* You know the price."
         }
       ],
-      "flavorReference": "The Quartermaster, Cliffmond Cliffnotes #10",
+      "flavorReference": "Quartermaster, Cliffmond Cliffnotes #10",
       "powers": [
         "{Eliza} deals up to X targets 2 melee damage where X is the number of Runic Rapiers in play."
       ]
@@ -341,7 +341,7 @@
       "flavorQuotes": [
         {
           "identifier": "Eliza",
-          "text": "You will be fine.{BR}Once they finish up with questioning,{BR}they will have a priest come and{BR}patch up your hamstrings."
+          "text": "You will be fine.{BR}We'll get a healer to patch up your hamstrings. We just have a few questions."
         }
       ],
       "flavorReference": "Eliza, Cliffmond Cliffnotes #1",
