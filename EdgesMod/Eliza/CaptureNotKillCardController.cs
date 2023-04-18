@@ -17,8 +17,10 @@ namespace EdgesOfTheMultiverse.Eliza
 
 		public override void AddTriggers()
 		{
-			AddTrigger((DestroyCardAction dc) => !base.GameController.IsCardIndestructible(dc.CardToDestroy.Card) && !dc.CardToDestroy.Card.IsCharacter && dc.CardToDestroy.Card.IsTarget, MoveInsteadResponse, 
-				TriggerType.MoveCard, TriggerTiming.Before);
+			AddTrigger((DestroyCardAction dc) => dc.CardSource != null && dc.CardToDestroy.CanBeDestroyed && dc.WasCardDestroyed && dc.CardSource.Card.Owner == base.TurnTaker && dc.CardToDestroy.Card.IsTarget && dc.PostDestroyDestinationCanBeChanged && (dc.DealDamageAction == null || dc.DealDamageAction.DamageSource.Card == base.CharacterCard) && (dc.DealDamageAction != null || dc.CardSource.Card.IsOneShot || dc.CardSource.Card.HasPowers), MoveInsteadResponse, new TriggerType[2]
+				  { TriggerType.MoveCard,
+					TriggerType.ChangePostDestroyDestination
+				}, TriggerTiming.After);
 		}
 
 		private IEnumerator MoveInsteadResponse(DestroyCardAction dc)
@@ -33,7 +35,7 @@ namespace EdgesOfTheMultiverse.Eliza
 				base.GameController.ExhaustCoroutine(e);
 			}
 
-			e = base.GameController.MoveCard(base.TurnTakerController, dc.CardToDestroy.Card, dc.CardToDestroy.Card.Owner.Deck, toBottom: true, isPutIntoPlay: false, playCardIfMovingToPlayArea: true, null, cardSource: GetCardSource());
+			dc.SetPostDestroyDestination(dc.CardToDestroy.Card.Owner.Deck, true);
 			if (base.UseUnityCoroutines)
 			{
 				yield return base.GameController.StartCoroutine(e);

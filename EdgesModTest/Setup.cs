@@ -5,7 +5,7 @@ using Handelabra.Sentinels.Engine.Model;
 using EdgesOfTheMultiverse.Eliza;
 using Handelabra;
 
-namespace MyModTest
+namespace EdgesModTest
 {
     [SetUpFixture]
     public class Setup

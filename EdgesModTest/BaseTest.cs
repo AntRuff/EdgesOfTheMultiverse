@@ -58,6 +58,7 @@ namespace Handelabra.Sentinels.UnitTest
         protected int? ExpectedDecisionChoiceCount { get; set; }
         protected Card DecisionNextToCard { get; set; }
         protected SelectionType? DecisionNextSelectionType { get; set; }
+        protected IEnumerable<Card> DecisionNextAssociatedCards { get; set; }
         protected Card[] DecisionRedirectTargets { get; set; }
         protected int DecisionRedirectTargetsIndex { get; set; }
         protected Card DecisionSelectPower { get; set; }
@@ -166,6 +167,19 @@ namespace Handelabra.Sentinels.UnitTest
         protected HeroTurnTakerController voidWrithe { get { return FindHero("VoidGuardWrithe"); } }
         protected HeroTurnTakerController wraith { get { return FindHero("TheWraith"); } }
 
+        protected HeroTurnTakerController thunder { get { return FindHero("CaptainThunder"); } }
+        protected HeroTurnTakerController bowman { get { return FindHero("Bowman"); } }
+        protected HeroTurnTakerController liberty { get { return FindHero("LadyLiberty"); } }
+        protected HeroTurnTakerController metro { get { return FindHero("DrMetropolis"); } }
+        protected HeroTurnTakerController siren { get { return FindHero("Siren"); } }
+        protected HeroTurnTakerController johnny { get { return FindHero("JohnnyRocket"); } }
+        protected HeroTurnTakerController daedalus { get { return FindHero("Daedalus"); } }
+        protected HeroTurnTakerController raven { get { return FindHero("TheRaven"); } }
+        protected HeroTurnTakerController pseudo { get { return FindHero("Pseudo"); } }
+        protected HeroTurnTakerController star { get { return FindHero("StarKnight"); } }
+        protected HeroTurnTakerController jack { get { return FindHero("LanternJack"); } }
+        protected HeroTurnTakerController eldritch { get { return FindHero("Eldritch"); } }
+
         // The Sentinels
         protected Card medico { get { return GetCard("DrMedicoCharacter"); } }
         protected Card mainstay { get { return GetCard("MainstayCharacter"); } }
@@ -197,6 +211,12 @@ namespace Handelabra.Sentinels.UnitTest
         protected TurnTakerController voss { get { return FindVillain("GrandWarlordVoss"); } }
         protected TurnTakerController wager { get { return FindVillain("WagerMaster"); } }
         protected TurnTakerController warfang { get { return FindVillain("KaargraWarfang"); } }
+
+        protected TurnTakerController hades { get { return FindVillain("Hades"); } }
+        protected TurnTakerController metamind { get { return FindVillain("MetaMind"); } }
+        protected TurnTakerController omega { get { return FindVillain("Omega"); } }
+        protected TurnTakerController argo { get { return FindVillain("Argo"); } }
+        protected TurnTakerController malador { get { return FindVillain("Malador"); } }
 
         // Team villains
         protected TurnTakerController baronTeam { get { return FindVillainTeamMember("BaronBlade"); } }
@@ -379,6 +399,7 @@ namespace Handelabra.Sentinels.UnitTest
             DecisionSelectFromBoxTurnTakerIdentifier = null;
             DecisionSelectFromBoxIndex = 0;
             DecisionNextSelectionType = null;
+            DecisionNextAssociatedCards = null;
             DecisionDoNotSelectLocation = false;
             DecisionRedirectTargets = null;
             DecisionRedirectTargetsIndex = 0;
@@ -2659,14 +2680,14 @@ namespace Handelabra.Sentinels.UnitTest
 
         protected IEnumerable<DamagePreviewResult> GetDamagePreviewResults(Card source, Card target, int amount, DamageType? damageType, bool isIrreducible = false)
         {
-            var results = this.GameController.GetDamagePreviewResults(new DamageSource(this.GameController, source), target, amount, null, damageType, isIrreducible);
+            var results = this.GameController.GetDamagePreviewResults(new DamageSource(this.GameController, source), target, amount, null, damageType, isIrreducible, null, null);
             OutputDamagePreviewResults(results);
             return results;
         }
 
         protected IEnumerable<DamagePreviewResult> GetDamagePreviewResults(TurnTaker source, Card target, int amount, DamageType? damageType, bool isIrreducible = false)
         {
-            var results = this.GameController.GetDamagePreviewResults(new DamageSource(this.GameController, source), target, amount, null, damageType, isIrreducible);
+            var results = this.GameController.GetDamagePreviewResults(new DamageSource(this.GameController, source), target, amount, null, damageType, isIrreducible, null, null);
             OutputDamagePreviewResults(results);
             return results;
         }
@@ -3164,6 +3185,11 @@ namespace Handelabra.Sentinels.UnitTest
         protected void AssertHasGameText(Card card)
         {
             Assert.IsTrue(card.HasGameText, card.Title + " should have game text.");
+        }
+
+        protected bool IsVillainTarget(Card card, CardSource cardSource = null)
+        {
+            return this.GameController.AskCardControllersIfIsVillainTarget(card, cardSource);
         }
 
         protected void AssertCardHasKeyword(Card card, string keyword, bool isAdditional)
@@ -4156,14 +4182,14 @@ namespace Handelabra.Sentinels.UnitTest
         protected GameControllerDecisionEvent AssertNoDecision(SelectionType selectionTypeThatShouldNotShowUp)
         {
             GameControllerDecisionEvent decider = decision =>
+            {
+                if (decision.SelectionType == selectionTypeThatShouldNotShowUp)
                 {
-                    if (decision.SelectionType == selectionTypeThatShouldNotShowUp)
-                    {
-                        Assert.Fail("No decision of selection type " + selectionTypeThatShouldNotShowUp + " was expected to be present, but there was a decision: " + decision.ToStringForMultiplayerDebugging());
-                    }
+                    Assert.Fail("No decision of selection type " + selectionTypeThatShouldNotShowUp + " was expected to be present, but there was a decision: " + decision.ToStringForMultiplayerDebugging());
+                }
 
-                    return this.MakeDecisions(decision);
-                };
+                return this.MakeDecisions(decision);
+            };
 
             ReplaceOnMakeDecisions(decider);
             return decider;
@@ -4487,12 +4513,12 @@ namespace Handelabra.Sentinels.UnitTest
                 RemoveAssertNextMessage(oldReceiver);
             }
             GameControllerMessageEvent receiver = (message) =>
-                {
-                    RunCoroutine(this.ReceiveMessage(message));
-                    Assert.IsTrue(message.Message.Contains(expectedMessage));
-                    _expectedMessageWasShown = true;
-                    return DoNothing();
-                };
+            {
+                RunCoroutine(this.ReceiveMessage(message));
+                Assert.IsTrue(message.Message.Contains(expectedMessage));
+                _expectedMessageWasShown = true;
+                return DoNothing();
+            };
 
             this.GameController.OnSendMessage += receiver;
             _expectedMessageWasShown = false;
@@ -4546,11 +4572,11 @@ namespace Handelabra.Sentinels.UnitTest
                 RemoveAssertNextMessage(oldReceiver);
             }
             GameControllerMessageEvent receiver = (message) =>
-                {
-                    RunCoroutine(this.ReceiveMessage(message));
-                    Assert.Fail("No message was expected, but there was one: '" + message.Message + "'");
-                    return DoNothing();
-                };
+            {
+                RunCoroutine(this.ReceiveMessage(message));
+                Assert.Fail("No message was expected, but there was one: '" + message.Message + "'");
+                return DoNothing();
+            };
 
             this.GameController.OnSendMessage += receiver;
             return receiver;
@@ -4826,6 +4852,7 @@ namespace Handelabra.Sentinels.UnitTest
 
             BinaryFormatter formatter = new BinaryFormatter();
             formatter.AssemblyFormat = System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Simple;
+            formatter.Binder = new SerializableRandomDeserializationBinder();
             FileStream stream = null;
             try
             {
@@ -4865,6 +4892,7 @@ namespace Handelabra.Sentinels.UnitTest
             {
                 BinaryFormatter formatter = new BinaryFormatter();
                 formatter.AssemblyFormat = System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Simple;
+                formatter.Binder = new SerializableRandomDeserializationBinder();
                 FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
                 try
                 {
@@ -5462,6 +5490,33 @@ namespace Handelabra.Sentinels.UnitTest
             this.DecisionSelectFromBoxIndex = 0;
         }
 
+        protected GameControllerDecisionEvent AssertNextDecisionAssociatedCards(IEnumerable<Card> cards)
+        {
+            this.DecisionNextAssociatedCards = cards;
+
+            GameControllerDecisionEvent decider = decision =>
+            {
+                if (this.DecisionNextAssociatedCards != null)
+                {
+                    Assert.NotNull(decision.AssociatedCards, "Associated cards should not be null");
+                    Assert.AreEqual(this.DecisionNextAssociatedCards.Count(), decision.AssociatedCards.Count(), "There should be {0} associated cards", this.DecisionNextAssociatedCards.Count());
+                    for (int i = 0; i < this.DecisionNextAssociatedCards.Count(); i++)
+                    {
+                        var expectedCard = this.DecisionNextAssociatedCards.ElementAt(i);
+                        var actualCard = decision.AssociatedCards.ElementAt(i);
+                        Assert.AreSame(expectedCard, actualCard);
+                    }
+
+                    this.DecisionNextAssociatedCards = null;
+                }
+
+                return this.MakeDecisions(decision);
+            };
+
+            ReplaceOnMakeDecisions(decider);
+            return decider;
+        }
+
         protected GameControllerDecisionEvent AssertNextDecisionSelectionType(SelectionType type)
         {
             this.DecisionNextSelectionType = type;
@@ -5957,4 +6012,3 @@ namespace Handelabra.Sentinels.UnitTest
         }
     }
 }
-

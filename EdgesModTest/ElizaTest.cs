@@ -10,7 +10,7 @@ using System.Collections;
 using Handelabra.Sentinels.UnitTest;
 using System.Collections.Generic;
 
-namespace MyModTest
+namespace EdgesModTest
 {
 	[TestFixture()]
 
@@ -626,6 +626,85 @@ namespace MyModTest
 			QuickShuffleCheck(1);
 			AssertInTrash(cc);
 			AssertInHand(ic);
+		}
+
+		[Test()]
+		public void TestDeliberateTargeting()
+		{
+			SetupGameController("BaronBlade", HeroNamespace, "Megalopolis");
+
+			StartGame();
+
+			var ele = PutIntoPlay("ElementalRedistributor");
+
+			DestroyCard("MobileDefensePlatform");
+
+			QuickHPStorage(eliza, baron);
+			DealDamage(eliza, baron, 2, DamageType.Fire);
+			QuickHPCheck(-2, 0);
+
+			var dt = PutIntoPlay("DeliberateTargeting");
+
+
+			QuickHPStorage(eliza, baron);
+			DealDamage(eliza, baron, 2, DamageType.Fire);
+			QuickHPCheck(0, -2);
+
+			QuickHPStorage(eliza, baron);
+			UsePower(dt, 0);
+			QuickHPCheck(-1, -1);
+			AssertInTrash(dt);
+		}
+
+		[Test()]
+		public void TestCaptureNotKill()
+		{
+			SetupGameController("BaronBlade", HeroNamespace, "Legacy", "Megalopolis");
+
+			StartGame();
+
+			var mdp = GetCardInPlay("MobileDefensePlatform");
+			var cnk = PutIntoPlay("CaptureNotKill");
+
+			DealDamage(eliza, mdp, 10, DamageType.Melee);
+			AssertOnBottomOfDeck(mdp);
+
+			var bb = PutIntoPlay("BladeBattalion");
+
+			DealDamage(legacy, bb, 10, DamageType.Melee);
+			AssertInTrash(bb);
+
+			UsePower(cnk, 0);
+			AssertInTrash(cnk);
+		}
+
+		[Test()]
+		public void TestBladeFlurry()
+		{
+			SetupGameController("BaronBlade", HeroNamespace, "Megalopolis");
+
+			StartGame();
+
+			var mdp = GetCardInPlay("MobileDefensePlatform");
+
+			GoToPlayCardPhase(eliza);
+
+			var bf = PutIntoPlay("BladeFlurry");
+			var aa = PutIntoPlay("ArcaneArm");
+			var ic = PutIntoPlay("ImpactCell");
+
+			QuickHPStorage(mdp);
+			DealDamage(eliza, mdp, 3, DamageType.Melee);
+			QuickHPCheck(-6);
+
+			DecisionSelectTargets = new Card[] { mdp, baron.CharacterCard };
+			var rs = PutInHand(eliza, "RapidStrikes");
+			DecisionSelectCardToPlay = rs;
+
+			QuickHPStorage(baron.CharacterCard);
+			GoToEndOfTurn(eliza);
+			QuickHPCheck(-4);
+			AssertInTrash(mdp);
 		}
 	}
 }

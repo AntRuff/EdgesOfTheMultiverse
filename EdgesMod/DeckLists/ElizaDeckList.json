@@ -10,7 +10,7 @@
       "identifier": "ElizaCharacter",
       "count": 1,
       "title": "Eliza",
-      "body": "Watch Captain",
+      "body": "Prepare and Strike",
       "backgroundColor": "909090",
       "foilBackgroundColor": "FDFDFD",
       "hitpointColor": "909090",
@@ -57,10 +57,10 @@
       "flavorQuotes": [
         {
           "identifier": "Eliza",
-          "text": "Defense is just as valuable as offense. Best to be prepared to use both."
+          "text": "Defense is just as valuable{BR}as offense. Best to be prepared{BR}to use both."
         }
       ],
-      "flavorReference": "Trials of the Watch Captains #2"
+      "flavorReference": "Eliza, Cliffmond Cliffnotes #2"
     },
     {
       "identifier": "RapidStrikes",
@@ -76,10 +76,10 @@
       "flavorQuotes": [
         {
           "identifier": "Sylvester",
-          "text": "I can barely follow her attacks. At least they not aimed at me."
+          "text": "I can barely follow her attacks.{BR}Just glad they're not aimed at me."
         }
       ],
-      "flavorReference": "Trials of the Watch Captains #1"
+      "flavorReference": "Sylvester, Cliffmond Cliffnotes #1"
     },
     {
       "identifier": "SwiftIncapacitation",
@@ -95,10 +95,10 @@
       "flavorQuotes": [
         {
           "identifier": "Eliza",
-          "text": "You would be surprised how often I need more than one set of manacles."
+          "text": "You would be surprised how often{BR}I need more than one set{BR}of manacles."
         }
       ],
-      "flavorReference": "Trials of the Watch Captains #5"
+      "flavorReference": "Eliza, Cliffmond Cliffnotes #5"
     },
     {
       "identifier": "CallForArms",
@@ -123,7 +123,7 @@
           "text": "This is why I keep backups."
         }
       ],
-      "flavorReference": "Trials of the Watch Captains #3"
+      "flavorReference": "Eliza, Cliffmond Cliffnotes #3"
     },
     {
       "identifier": "ChargeTheArcaneCells",
@@ -141,10 +141,10 @@
       "flavorQuotes": [
         {
           "identifier": "Eliza",
-          "text": "Just put this here and... now the magic has a focus."
+          "text": "Just put this here and...{BR}now the magic can flow."
         }
       ],
-      "flavorReference": "Trials of the Watch Captains #5"
+      "flavorReference": "Eliza, Cliffmond Cliffnotes #5"
     },
     {
       "identifier": "ArcaneArm",
@@ -167,10 +167,10 @@
       "flavorQuotes": [
         {
           "identifier": "Eliza",
-          "text": "Even if you replace what is lost, it will never act the same. Be the same. You will always need to adapt."
+          "text": "Even if you replace what is lost,{BR}it will never act the same. Be the same.{BR}You will always need to adapt."
         }
       ],
-      "flavorReference": "Trials of the Watch Captains #8",
+      "flavorReference": "Eliza, Cliffmond Cliffnotes #8",
       "hitpoints": 6
     },
     {
@@ -193,7 +193,7 @@
           "text": "Who said I only had one floating sword?"
         }
       ],
-      "flavorReference": "Trials of the Watch Captain #6"
+      "flavorReference": "Eliza, Cliffmond Cliffnotes #6"
     },
     {
       "identifier": "ImpactCell",
@@ -218,7 +218,7 @@
           "text": "Careful, any more force and your weapons are likely to snap."
         }
       ],
-      "flavorReference": "Trials of the Watch Captain #4"
+      "flavorReference": "Sylvester, Cliffmond Cliffnotes #4"
     },
     {
       "identifier": "DeflectionCell",
@@ -240,10 +240,10 @@
       "flavorQuotes": [
         {
           "identifier": "Thug",
-          "text": "Take that! *dink* Not good, not good, not good!"
+          "text": "Take that!{BR}*dink*{BR}Not good, not good, not good!"
         }
       ],
-      "flavorReference": "Trials of the Watch Captain #1"
+      "flavorReference": "Thug, Cliffmond Cliffnotes #1"
     },
     {
       "identifier": "RunicRapier",
@@ -264,10 +264,10 @@
       "flavorQuotes": [
         {
           "identifier": "The Quartermaster",
-          "text": "Let me guess; another batch of rapiers, no knuckle guard, no decal, and primed for an enchanter. *sigh* You know the price. "
+          "text": "Let me guess; another batch of{BR}rapiers, no knuckle guard, no decal,{BR}and primed for an enchanter.{BR}*sigh* You know the price."
         }
       ],
-      "flavorReference": "Trials of the Watch Captains #10",
+      "flavorReference": "The Quartermaster, Cliffmond Cliffnotes #10",
       "powers": [
         "{Eliza} deals up to X targets 2 melee damage where X is the number of Runic Rapiers in play."
       ]
@@ -293,7 +293,7 @@
           "text": "Knowing where to strike is just as important as knowing when to strike."
         }
       ],
-      "flavorReference": "Trials of the Watch Captains #2",
+      "flavorReference": "Eliza, Cliffmond Cliffnotes #2",
       "powers": [
         "{Eliza} deals each target 1 melee damage and destroy this card."
       ]
@@ -319,10 +319,10 @@
       "flavorQuotes": [
         {
           "identifier": "Sylvester",
-          "text": "Before you go on with your tough guy act, you might want to check how any times she stabbed ya."
+          "text": "Before you go on with your{BR}tough guy act, you might want to check how{BR}many times she stabbed ya."
         }
       ],
-      "flavorReference": "Trials of the Watch Captains #6"
+      "flavorReference": "Sylvester, Cliffmond Cliffnotes #6"
     },
     {
       "identifier": "CaptureNotKill",
@@ -341,14 +341,13 @@
       "flavorQuotes": [
         {
           "identifier": "Eliza",
-          "text": "You will be fine. Once they finish up with questioning, they will have a priest come and check on your hamstrings."
+          "text": "You will be fine.{BR}Once they finish up with questioning,{BR}they will have a priest come and{BR}patch up your hamstrings."
         }
       ],
-      "flavorReference": "Trials of the Watch Captains #1",
+      "flavorReference": "Eliza, Cliffmond Cliffnotes #1",
       "powers": [
         "Destroy this card."
       ]
     }
   ]
-
 }
