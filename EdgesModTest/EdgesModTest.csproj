@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="ElizaTest.cs" />
     <Compile Include="BaseTest.cs" />
+    <Compile Include="ElizaVariantTest.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="RandomGameTest.cs" />
   </ItemGroup>

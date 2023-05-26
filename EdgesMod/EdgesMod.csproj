@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -48,10 +47,10 @@
     <Compile Include="Eliza\BladeFlurryCardController.cs" />
     <Compile Include="Eliza\CallForArmsCardController.cs" />
     <Compile Include="Eliza\CaptureNotKillCardController.cs" />
-    <Compile Include="Eliza\CardControllerTemplate.cs" />
     <Compile Include="Eliza\ChargeTheArcaneCellsCardController.cs" />
     <Compile Include="Eliza\DeflectionCellCardController.cs" />
     <Compile Include="Eliza\DeliberateTargetingCardController.cs" />
+    <Compile Include="Eliza\LastWatchElizaCharacterCardController.cs" />
     <Compile Include="Eliza\ElizaCharacterCardController.cs" />
     <Compile Include="Eliza\ImapctCellCardController.cs" />
     <Compile Include="Eliza\OmnifensiveFightingCardController.cs" />

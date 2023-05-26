@@ -12,7 +12,7 @@
       "title": "Eliza",
       "body": "Prepare and Strike",
       "backgroundColor": "909090",
-      "foilBackgroundColor": "FDFDFD",
+      "foilBackgroundColor": "FEFEFE",
       "hitpointColor": "909090",
       "character": true,
       "powers": [
@@ -348,6 +348,47 @@
       "powers": [
         "Destroy this card."
       ]
+    }
+  ],
+  "promoCards": [
+    {
+      "identifier": "ElizaCharacter",
+      "promoIdentifier": "LastWatchElizaCharacter",
+      "count": 1,
+      "title": "Eliza",
+      "promoTitle": "Last Watch Eliza",
+      "body": "Sacrifice for Survival",
+      "backgroundColor": "5E5F63",
+      "foilBackgroundColor": "FEFEFE",
+      "hitpointColor": "5E5F63",
+      "character": true,
+      "powers": [
+        "Destroy an Runic Rapier. If you do, destroy an ongoing or non-character device and draw a card. Otherwise, search your deck or trash for an Engraived Rapier and put it into play."
+      ],
+      "icons": [
+        "Destroy",
+        "DrawCardNow",
+        "Search"
+      ],
+      "hitpoints": 22,
+      "nemesisIdentifiers": [
+        "EdgesOfTheMultiverse.Eliza"
+      ],
+      "flippedBody": [
+        "When a hero would be reduced to zero HP or fewer, you may instead remove {Eliza} from the game to prevant that damage."
+      ],
+      "incapacitatedAbilities": [
+        "Destroy an Ongoing or Enviroment card.",
+        "One player may play a card."
+      ],
+      "flippedIcons": [
+        "Destroy",
+        "PlayCardNow"
+      ],
+      "openingLines": {
+        "default": "I won't give in, not to you!"
+      },
+      "complexity": 2
     }
   ]
 }
