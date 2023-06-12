@@ -261,6 +261,29 @@ namespace EdgesModTest
 			PlayCard(testCard);
 			AssertInTrash(bb);
 		}
+		
+		[Test()]
+		public void TestArcaneArmRetainTargetStatus()
+		{
+			SetupGameController("BaronBlade", HeroNamespace, "RealmOfDiscord");
+
+			StartGame();
+
+			var aa = PutIntoPlay("ArcaneArm");
+			var rr = PutIntoPlay("RunicRapier");
+			AssertIsTarget(aa, 6);
+			AssertNotTarget(rr);
+
+			SetHitPoints(aa, 4);
+
+			var iv = PutIntoPlay("ImbuedVitality");
+			AssertIsTarget(aa, 4);
+			AssertIsTarget(rr, 6);
+
+			DestroyCard(iv);
+			AssertIsTarget(aa, 4);
+			AssertNotTarget(rr);
+		}
 
 		//Tests damage redirection
 		[Test()]

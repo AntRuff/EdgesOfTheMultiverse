@@ -115,7 +115,7 @@ namespace EdgesOfTheMultiverse.Eliza
 		{
 			if (base.Card.IsFlipped)
 			{
-				AddSideTrigger(AddTrigger((DealDamageAction da) => da.Target.IsHeroCharacterCard && da.TargetHitPointsAfterBeingDealtDamage <= 0, PrevantDamageResponse, new TriggerType[3]
+				AddSideTrigger(AddTrigger((DealDamageAction da) => IsHeroCharacterCard(da.Target) && da.Target.HitPoints <= da.Amount, PrevantDamageResponse, new TriggerType[3]
 				{
 					TriggerType.WouldBeDealtDamage,
 					TriggerType.CancelAction,

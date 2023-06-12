@@ -363,14 +363,14 @@
       "hitpointColor": "5E5F63",
       "character": true,
       "powers": [
-        "Destroy an Runic Rapier. If you do, destroy an ongoing or non-character device and draw a card. Otherwise, search your deck or trash for an Engraived Rapier and put it into play."
+        "Destroy an Runic Rapier. If you do, destroy an ongoing or non-character device and draw a card. Otherwise, search your deck or trash for a Runic Rapier and put it into play."
       ],
       "icons": [
         "Destroy",
         "DrawCardNow",
         "Search"
       ],
-      "hitpoints": 22,
+      "hitpoints": 23,
       "nemesisIdentifiers": [
         "EdgesOfTheMultiverse.Eliza"
       ],

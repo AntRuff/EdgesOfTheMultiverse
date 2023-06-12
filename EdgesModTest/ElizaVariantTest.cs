@@ -156,6 +156,9 @@ namespace EdgesModTest
 			QuickHPCheck(0);
 			AssertIsInPlay(legacy.CharacterCard);
 			AssertOutOfGame(eliza.CharacterCard);
+
+			PutOnDeck("LivingForceField");
+			PlayCard(baron, "HastenDoom");
 		}
 	}
 }
