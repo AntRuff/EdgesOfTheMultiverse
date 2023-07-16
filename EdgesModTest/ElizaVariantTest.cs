@@ -38,7 +38,7 @@ namespace EdgesModTest
 			Assert.IsNotNull(eliza);
 			Assert.IsInstanceOf(typeof(LastWatchElizaCharacterCardController), eliza.CharacterCardController);
 
-			Assert.AreEqual(22, eliza.CharacterCard.HitPoints);
+			Assert.AreEqual(23, eliza.CharacterCard.HitPoints);
 		}
 
 		[Test()]
@@ -159,6 +159,87 @@ namespace EdgesModTest
 
 			PutOnDeck("LivingForceField");
 			PlayCard(baron, "HastenDoom");
+		}
+
+		[Test()]
+		public void TestAngelSlayerLoads()
+		{
+			SetupGameController("BaronBlade", HeroNamespace + "/AngelSlayerElizaCharacter", "Megalopolis");
+			Assert.AreEqual(3, this.GameController.TurnTakerControllers.Count());
+
+			Assert.IsNotNull(eliza);
+			Assert.IsInstanceOf(typeof(AngelSlayerElizaCharacterCardController), eliza.CharacterCardController);
+
+			Assert.AreEqual(20, eliza.CharacterCard.HitPoints);
+		}
+
+		[Test()]
+		public void TestAngelSlayerPowerDamageAndHeal()
+		{
+			SetupGameController("BaronBlade", HeroNamespace + "/AngelSlayerElizaCharacter", "Megalopolis");
+
+			StartGame();
+
+			var aa = PutIntoPlay("ArcaneArm");
+
+			DealDamage(baron, aa, 4, DamageType.Melee);
+			QuickHPStorage(eliza.CharacterCard, aa);
+
+			UsePower(eliza);
+
+			QuickHPCheck(-2, 3);
+		}
+
+		[Test()]
+		public void TestAngelSlayerPowerDraw()
+		{
+			SetupGameController("BaronBlade", HeroNamespace + "/AngelSlayerElizaCharacter", "Megalopolis");
+
+			StartGame();
+
+			QuickHandStorage(eliza);
+			UsePower(eliza);
+			QuickHandCheck(2);
+		}
+
+		[Test()]
+		public void TestAngelSlayerIncap1()
+		{
+			SetupGameController("BaronBlade", HeroNamespace + "/AngelSlayerElizaCharacter", "Legacy", "Megalopolis");
+
+			StartGame();
+
+			SetupIncap(baron);
+
+			var mdp = GetCardInPlay("MobileDefensePlatform");
+			var tp = PutIntoPlay("TrafficPileup");
+
+			SetHitPoints(baron.CharacterCard, 20);
+			SetHitPoints(legacy.CharacterCard, 20);
+			SetHitPoints(mdp, 6);
+			SetHitPoints(tp, 6);
+
+			QuickHPStorage(baron.CharacterCard, legacy.CharacterCard, mdp, tp);
+
+			UseIncapacitatedAbility(eliza, 0);
+
+			QuickHPCheck(1, 1, 1, 1);
+		}
+
+		[Test()]
+		public void TestAngelSlayerIncap2()
+		{
+			SetupGameController("BaronBlade", HeroNamespace + "/AngelSlayerElizaCharacter", "Bunker", "Megalopolis");
+
+			StartGame();
+
+			SetupIncap(baron);
+
+			DecisionSelectTurnTaker = bunker.TurnTaker;
+
+			QuickHandStorage(bunker);
+			UseIncapacitatedAbility(eliza, 1);
+			QuickHandCheck(1);
 		}
 	}
 }

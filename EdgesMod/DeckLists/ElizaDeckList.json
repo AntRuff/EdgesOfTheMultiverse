@@ -363,7 +363,7 @@
       "hitpointColor": "5E5F63",
       "character": true,
       "powers": [
-        "Destroy an Runic Rapier. If you do, destroy an ongoing or non-character device and draw a card. Otherwise, search your deck or trash for a Runic Rapier and put it into play."
+        "Destroy a Runic Rapier. If you do, destroy an ongoing or non-character device and draw a card. Otherwise, search your deck or trash for a Runic Rapier and put it into play."
       ],
       "icons": [
         "Destroy",
@@ -387,6 +387,44 @@
       ],
       "openingLines": {
         "default": "I won't give in, not to you!"
+      },
+      "complexity": 2
+    },
+    {
+      "identifier": "ElizaCharacter",
+      "promoIdentifier": "AngelSlayerElizaCharacter",
+      "count": 1,
+      "title": "Eliza",
+      "promoTitle": "Angel Slayer Eliza",
+      "body": "Divine Armaments",
+      "backgroundColor": "FFEC73",
+      "foilBackgroundColor": "FEFEFE",
+      "hitpointColor": "FFEC73",
+      "character": true,
+      "powers": [
+        "If Arcane Arm is in play, Arcane Arm deals Eliza 2 radiant damage that can't be redirected and Arcane Arm regains 3 HP. Otherwise, draw 2 cards."
+      ],
+      "icons": [
+        "DealDamageRadiant",
+        "RegainHP",
+        "DrawCardNow"
+      ],
+      "hitpoints": 20,
+      "nemesisIdentifiers": [
+        "EdgesOfTheMultiverse.Eliza"
+      ],
+      "incapacitatedAbilities": [
+        "Each target regains 1 HP.",
+        "One player may use a power.",
+        "One hero deals 1 target 2 radiant damage."
+      ],
+      "flippedIcons": [
+        "RegainHP",
+        "UsePowerNow",
+        "DealDamageRadiant"
+      ],
+      "openingLines": {
+        "default": "Divinity couldn't get past me, what makes you different?"
       },
       "complexity": 2
     }

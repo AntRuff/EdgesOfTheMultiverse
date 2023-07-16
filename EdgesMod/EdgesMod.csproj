@@ -42,6 +42,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Eliza\AngelSlayerElizaCharacterCardController.cs" />
     <Compile Include="Eliza\ArcaneArmCardController.cs" />
     <Compile Include="Eliza\ArcaneCellCardController.cs" />
     <Compile Include="Eliza\BladeFlurryCardController.cs" />
