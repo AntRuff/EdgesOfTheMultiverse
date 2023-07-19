@@ -94,7 +94,8 @@ namespace EdgesOfTheMultiverse.Eliza
 					}
 					break;
 				case 2:
-					IEnumerator e3 = base.GameController.SelectHeroToSelectTargetAndDealDamage(this.HeroTurnTakerController, 2, DamageType.Radiant);
+					List<SelectCardDecision> storedResults = new List<SelectCardDecision>();
+					IEnumerator e3 = base.GameController.SelectCardAndStoreResults(DecisionMaker, SelectionType.CardToDealDamage, new LinqCardCriteria((Card c) => c.IsInPlay && !c.IsIncapacitated && IsHero(c), "hero"), storedResults, optional: false, cardSource: GetCardSource());
 					if (base.UseUnityCoroutines)
 					{
 						yield return base.GameController.StartCoroutine(e3);
@@ -102,6 +103,19 @@ namespace EdgesOfTheMultiverse.Eliza
 					else
 					{
 						base.GameController.ExhaustCoroutine(e3);
+					}
+					if (DidSelectCard(storedResults))
+					{
+						Card source = GetSelectedCard(storedResults);
+						e3 = base.GameController.SelectTargetsAndDealDamage(DecisionMaker, new DamageSource(base.GameController, source), 2, DamageType.Radiant, 1, optional: false, 1, cardSource: GetCardSource());
+						if (base.UseUnityCoroutines)
+						{
+							yield return base.GameController.StartCoroutine(e3);
+						}
+						else
+						{
+							base.GameController.ExhaustCoroutine(e3);
+						}
 					}
 					break;
 			}

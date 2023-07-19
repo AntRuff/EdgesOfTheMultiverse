@@ -103,7 +103,7 @@ namespace EdgesModTest
 		public void TestIncap2()
 		{
 			//One hero deals 1 target 1 melee damage and 1 melee damage
-			SetupGameController("BaronBlade", HeroNamespace, "Legacy", "Megalopolis");
+			SetupGameController("BaronBlade", HeroNamespace, "Legacy", "Bunker", "Megalopolis");
 
 			StartGame();
 			SetupIncap(baron);

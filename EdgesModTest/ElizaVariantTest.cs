@@ -241,5 +241,24 @@ namespace EdgesModTest
 			UseIncapacitatedAbility(eliza, 1);
 			QuickHandCheck(1);
 		}
+
+		[Test()]
+		public void TestAngelSlayerIncap3()
+		{
+			SetupGameController("BaronBlade", HeroNamespace + "/AngelSlayerElizaCharacter", "Legacy", "Bunker", "Megalopolis");
+
+			StartGame();
+
+			SetupIncap(baron);
+
+			var mdp = GetCardInPlay("MobileDefensePlatform");
+
+			DecisionSelectCard = legacy.CharacterCard;
+			DecisionSelectTarget = mdp;
+
+			QuickHPStorage(mdp);
+			UseIncapacitatedAbility(eliza, 2);
+			QuickHPCheck(-2);
+		}
 	}
 }
