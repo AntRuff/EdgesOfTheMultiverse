@@ -113,7 +113,7 @@
         "PlayCardsNow"
       ],
       "body": [
-        "Search your deck or trash for a copy of Engraved Rapier or Arcane Arm and add it to your hand. If you searched your deck, shuffle your deck.",
+        "Search your deck or trash for a copy of Runic Rapier or Arcane Arm and add it to your hand. If you searched your deck, shuffle your deck.",
         "You may draw a card.",
         "You may play a card."
       ],
@@ -258,7 +258,7 @@
         "DestroyOngoing"
       ],
       "body": [
-        "You may only have 1 copy of Engraved Rapier in play at a time.",
+        "You may only have 1 copy of Runic Rapier in play at a time.",
         "The first time {Eliza} deals damage each turn, she deals 1 target 1 melee damage."
       ],
       "flavorQuotes": [
