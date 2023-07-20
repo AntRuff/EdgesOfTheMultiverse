@@ -64,7 +64,7 @@ namespace EdgesOfTheMultiverse.Eliza
 			} else
 			{
 				//Otherwise, search your deck for a Runic Rapier and put it into play.
-				e = SearchForCards(this.DecisionMaker, true, false, 1, 1, new LinqCardCriteria((Card c) => c.Identifier == "RunicRapier"), true, false, false);
+				e = SearchForCards(this.DecisionMaker, true, true, 1, 1, new LinqCardCriteria((Card c) => c.Identifier == "RunicRapier"), true, false, false);
 				if (base.UseUnityCoroutines)
 				{
 					yield return base.GameController.StartCoroutine(e);

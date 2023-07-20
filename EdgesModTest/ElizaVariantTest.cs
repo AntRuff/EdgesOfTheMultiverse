@@ -91,6 +91,45 @@ namespace EdgesModTest
 
 			var rr = PutOnDeck("RunicRapier");
 
+			DecisionSelectLocation = new LocationChoice(eliza.HeroTurnTaker.Deck);
+			DecisionSelectCard = rr;
+			UsePower(eliza.CharacterCard);
+			AssertIsInPlay(rr);
+		}
+
+		[Test()]
+		public void TestLastWatchPowerNoRapiersSearchTrash()
+		{
+			SetupGameController("BaronBlade", HeroNamespace + "/LastWatchElizaCharacter", "Megalopolis");
+
+			StartGame();
+
+			var rr = PutInTrash("RunicRapier");
+
+			DecisionSelectLocation = new LocationChoice(eliza.HeroTurnTaker.Trash);
+			DecisionSelectCard = rr;
+			UsePower(eliza.CharacterCard);
+			AssertIsInPlay(rr);
+		}
+
+		[Test()]
+		public void TestLastWatchPowerNoRapiersSearchTrashAndDeck()
+		{
+			SetupGameController("BaronBlade", HeroNamespace + "/LastWatchElizaCharacter", "Megalopolis");
+
+			StartGame();
+
+			var rr = PutOnDeck("RunicRapier");
+
+			DecisionSelectLocation = new LocationChoice(eliza.HeroTurnTaker.Deck);
+			DecisionSelectCard = rr;
+			UsePower(eliza.CharacterCard);
+			AssertIsInPlay(rr);
+
+			DestroyCard(rr);
+			ResetDecisions();
+
+			DecisionSelectLocation = new LocationChoice(eliza.HeroTurnTaker.Trash);
 			DecisionSelectCard = rr;
 			UsePower(eliza.CharacterCard);
 			AssertIsInPlay(rr);
