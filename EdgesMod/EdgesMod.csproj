@@ -54,6 +54,7 @@
     <Compile Include="Eliza\LastWatchElizaCharacterCardController.cs" />
     <Compile Include="Eliza\ElizaCharacterCardController.cs" />
     <Compile Include="Eliza\ImapctCellCardController.cs" />
+    <Compile Include="Eliza\MageKnightElizaCharacterCardController.cs" />
     <Compile Include="Eliza\OmnifensiveFightingCardController.cs" />
     <Compile Include="Eliza\RapidStrikesCardController.cs" />
     <Compile Include="Eliza\RunicRapierCardController.cs" />

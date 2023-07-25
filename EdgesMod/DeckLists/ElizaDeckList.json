@@ -427,6 +427,45 @@
         "default": "Divinity couldn't get past me, what makes you different?"
       },
       "complexity": 2
+    },
+    {
+      "identifier": "ElizaCharacter",
+      "promoIdentifier": "MageKnightElizaCharacter",
+      "count": 1,
+      "title": "Eliza",
+      "promoTitle": "Mage Knight Eliza",
+      "body": "Arcane Adaption",
+      "backgroundColor": "A86272",
+      "foilBackgroundColor": "FEFEFE",
+      "hitpointColor": "A86272",
+      "character": true,
+      "powers": [
+        "Search your deck for an Arcane Cell and put it into your hand. You may return an Arcane Cell to your had from play. If you do, play an Arcane Cell. Otherwise draw a card."
+      ],
+      "icons": [
+        "Search",
+        "Manipulate",
+        "PlayCardNow",
+        "DrawCardNow"
+      ],
+      "hitpoints": 24,
+      "nemesisIdentifiers": [
+        "EdgesOfTheMultiverse.Eliza"
+      ],
+      "incapacitatedAbilities": [
+        "One player may play a card.",
+        "Increase damage dealt by a target by 1 until the start of your next turn.",
+        "Reduce damage dealt to a target by 1 until the start of your next turn."
+      ],
+      "flippedIcons": [
+        "PlayCardNow",
+        "IncreaseDamageDealt",
+        "ReduceDamageTaken"
+      ],
+      "openingLines": {
+        "default": "Neutralize the threat. Now!"
+      },
+      "complexity": 2
     }
   ]
 }
