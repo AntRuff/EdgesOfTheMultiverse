@@ -47,6 +47,7 @@ namespace EdgesOfTheMultiverse.Eliza
 				base.GameController.ExhaustCoroutine(routine2);
 			}
 		}
+
 		public override IEnumerator UseIncapacitatedAbility(int index)
 		{
 			IEnumerator e = null;
@@ -89,6 +90,8 @@ namespace EdgesOfTheMultiverse.Eliza
 				case 1:
 					{
 						// One Hero deals 1 target 1 melee damage and 1 melee damage
+
+
 						List<SelectTurnTakerDecision> storedResults = new List<SelectTurnTakerDecision>();
 						e = GameController.SelectHeroTurnTaker(DecisionMaker, SelectionType.SelectTargetFriendly, false, false, storedResults);
 						if (base.UseUnityCoroutines)
@@ -99,7 +102,18 @@ namespace EdgesOfTheMultiverse.Eliza
 							base.GameController.ExhaustCoroutine(e);
 						}
 
-						DamageSource ds = new DamageSource(GameController, storedResults[0].SelectedTurnTaker.CharacterCard);
+						List<Card> hero = new List<Card>();
+						e = FindCharacterCard(storedResults[0].SelectedTurnTaker, SelectionType.HeroCharacterCard, hero);
+						if (base.UseUnityCoroutines)
+						{
+							yield return base.GameController.StartCoroutine(e);
+						}
+						else
+						{
+							base.GameController.ExhaustCoroutine(e);
+						}
+
+						DamageSource ds = new DamageSource(GameController, hero[0]);
 						List<DealDamageAction> list = new List<DealDamageAction>
 						{
 							new DealDamageAction(GetCardSource(), ds, null, 1, DamageType.Melee),

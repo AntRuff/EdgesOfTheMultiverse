@@ -25,7 +25,7 @@ namespace EdgesOfTheMultiverse.Eliza
 				base.GameController.ExhaustCoroutine(e);
 			}
 
-			//You may return an Arcane Cell from play to hand.
+			//You may return an Arcane Cell from play to hand. 
 			List <SelectCardDecision> storedResults = new List<SelectCardDecision>();
 			IEnumerator move = base.GameController.SelectCardAndStoreResults(base.HeroTurnTakerController, SelectionType.MoveCardToHand, new LinqCardCriteria((Card c) => c.DoKeywordsContain("arcane cell") && c.IsInPlay, "arcane cell in play"), storedResults, true, cardSource: base.GetCardSource());
 			if (base.UseUnityCoroutines)
@@ -37,44 +37,14 @@ namespace EdgesOfTheMultiverse.Eliza
 				base.GameController.ExhaustCoroutine(move);
 			}
 
-
+			//If you do, play an Arcane Cell
 			SelectCardDecision selectCardDecision = storedResults.Where((SelectCardDecision d) => d.Completed).FirstOrDefault();
 			if (selectCardDecision != null && selectCardDecision.SelectedCard != null)
 			{
 				Card card = selectCardDecision.SelectedCard;
-				IEnumerator e2 = base.GameController.MoveCard(base.HeroTurnTakerController, card, new Location(card, LocationName.Hand), cardSource: base.GetCardSource());
-
-				if (base.UseUnityCoroutines)
-				{
-					yield return base.GameController.StartCoroutine(e2);
-				}
-				else
-				{
-					base.GameController.ExhaustCoroutine(e2);
-				}
-
-				IEnumerator e3 = base.GameController.SelectAndPlayCardFromHand(base.HeroTurnTakerController, true, null, new LinqCardCriteria((Card c) => c.IsInHand && c.DoKeywordsContain("arcane cell")), cardSource: base.GetCardSource());
-				if (base.UseUnityCoroutines)
-				{
-					yield return base.GameController.StartCoroutine(e3);
-				}
-				else
-				{
-					base.GameController.ExhaustCoroutine(e3);
-				}
+				
 			}
-			else
-			{
-				IEnumerator draw = base.GameController.DrawCard(base.HeroTurnTaker, true, cardSource: base.GetCardSource());
-				if (base.UseUnityCoroutines)
-				{
-					yield return base.GameController.StartCoroutine(draw);
-				}
-				else
-				{
-					base.GameController.ExhaustCoroutine(draw);
-				}
-			}
+			
 
 		}
 

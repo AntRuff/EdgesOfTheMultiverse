@@ -58,7 +58,7 @@ namespace EdgesOfTheMultiverse.Eliza
 
 				for (int i = 0; i < dd.OriginalAmount; i++)
 				{
-					hits.Add(new DealDamageAction(associatedCardSource, dd.DamageSource, null, 1, DamageType.Melee));
+					hits.Add(new DealDamageAction(associatedCardSource, dd.DamageSource, null, 1, dd.DamageType));
 				}
 
 				IEnumerator e3 = DealMultipleInstancesOfDamage(hits, (Card c) => c == dd.Target);

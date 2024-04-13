@@ -299,5 +299,51 @@ namespace EdgesModTest
 			UseIncapacitatedAbility(eliza, 2);
 			QuickHPCheck(-2);
 		}
+
+		[Test()]
+		public void TestMageKnightLoads()
+		{
+			SetupGameController("BaronBlade", HeroNamespace + "/MageKnightElizaCharacter", "Megalopolis");
+			Assert.AreEqual(3, this.GameController.TurnTakerControllers.Count());
+
+			Assert.IsNotNull(eliza);
+			Assert.IsInstanceOf(typeof(MageKnightElizaCharacterCardController), eliza.CharacterCardController);
+
+			Assert.AreEqual(24, eliza.CharacterCard.HitPoints);
+		}
+
+		[Test()]
+		public void TestMageKnightInnateSearch()
+		{
+			SetupGameController("BaronBlade", HeroNamespace + "/MageKnightElizaCharacter", "Megalopolis");
+
+			StartGame();
+
+			var ic = PutOnDeck("ImpactCell");
+
+			DecisionSelectCard = ic;
+			QuickHandStorage(eliza);
+			UsePower(eliza, 0);
+			QuickHandCheck(2);
+		}
+
+		[Test()]
+		public void TestMageKnightInnateReturnPlay()
+		{
+			SetupGameController("BaronBlade", HeroNamespace + "/MageKnightElizaCharacter", "Megalopolis");
+
+			StartGame();
+
+			var ic = PutOnDeck("ImpactCell");
+			var aa = PutIntoPlay("ArcaneArm");
+			var dc = PutIntoPlay("DeflectionCell");
+
+			//DecisionSelectCards = new List<Card> { ic, dc, ic};
+			//QuickHandStorage(eliza);
+			UsePower(eliza, 0);
+			/*AssertInPlayArea(eliza, ic);
+			AssertInHand(eliza, dc);
+			QuickHandCheck(1);*/
+		}
 	}
 }

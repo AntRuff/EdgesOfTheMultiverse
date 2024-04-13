@@ -21,7 +21,7 @@
       "icons": [
         "HasPower",
         "DrawCardNow",
-        "DealDamage<Melee>"
+        "DealDamageMelee"
       ],
       "hitpoints": 22,
       "nemisisIdentifiers": [
@@ -33,8 +33,8 @@
         "One player may draw a card now."
       ],
       "flippedIcons": [
-        "ReduceDamageDealt",
-        "DealDamage<Melee>",
+        "ReduceDamageTaken",
+        "DealDamageMelee",
         "DrawCardNow"
       ],
       "openingLines": {
@@ -156,7 +156,7 @@
       ],
       "icons": [
         "RedirectDamage",
-        "ReduceDamage",
+        "ReduceDamageTaken",
         "DestroyEquipment"
       ],
       "body": [
@@ -235,7 +235,7 @@
       "body": [
         "Play this card next to an Arcane Arm in play.",
         "Reduce the damage taken by the Arcane Arm by 1.",
-        "When this card would be leave play, you may draw a card."
+        "When this card would leave play, you may draw a card."
       ],
       "flavorQuotes": [
         {
@@ -375,13 +375,14 @@
         "EdgesOfTheMultiverse.Eliza"
       ],
       "flippedBody": [
-        "When a hero would be reduced to zero HP or fewer, you may instead remove {Eliza} from the game to prevant that damage."
+        "When a hero would be reduced to zero HP or fewer, you may instead remove {Eliza} from the game to prevent that damage."
       ],
       "incapacitatedAbilities": [
-        "Destroy an Ongoing or Enviroment card.",
+        "Destroy an Ongoing or Environment card.",
         "One player may play a card."
       ],
       "flippedIcons": [
+        "CancelledDamagedGreen",
         "Destroy",
         "PlayCardNow"
       ],
@@ -406,7 +407,7 @@
       ],
       "icons": [
         "DealDamageRadiant",
-        "RegainHP",
+        "GainHP",
         "DrawCardNow"
       ],
       "hitpoints": 20,
@@ -419,7 +420,7 @@
         "One hero deals 1 target 2 radiant damage."
       ],
       "flippedIcons": [
-        "RegainHP",
+        "GainHP",
         "UsePowerNow",
         "DealDamageRadiant"
       ],
@@ -440,7 +441,7 @@
       "hitpointColor": "A86272",
       "character": true,
       "powers": [
-        "Search your deck for an Arcane Cell and put it into your hand. You may return an Arcane Cell to your had from play. If you do, play an Arcane Cell. Otherwise draw a card."
+        "Search your deck for an Arcane Cell and put it into your hand. You may return an Arcane Cell to your hand from play. If you do, play an Arcane Cell. Otherwise draw a card."
       ],
       "icons": [
         "Search",

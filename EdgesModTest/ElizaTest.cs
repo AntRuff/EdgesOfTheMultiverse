@@ -52,7 +52,7 @@ namespace EdgesModTest
 
 			var mdp = GetCardInPlay("MobileDefensePlatform");
 
-			
+
 			QuickHandStorage(eliza.ToHero());
 			DecisionSelectTarget = mdp;
 			QuickHPStorage(mdp);
@@ -109,7 +109,7 @@ namespace EdgesModTest
 			SetupIncap(baron);
 			AssertIncapacitated(eliza);
 			Card mdp = GetCardInPlay("MobileDefensePlatform");
-			
+
 			//Legacy deals mdp 1 damage and 1 damage, 2 damage total
 			GoToUseIncapacitatedAbilityPhase(eliza);
 			QuickHPStorage(mdp);
@@ -127,6 +127,25 @@ namespace EdgesModTest
 			DecisionSelectTarget = baron.CharacterCard;
 			UseIncapacitatedAbility(eliza, 1);
 			QuickHPCheck(-4);
+		}
+
+		[Test()]
+		public void TestIncap2Sentinels()
+		{
+			SetupGameController("BaronBlade", HeroNamespace, "TheSentinels", "Megalopolis");
+			StartGame();
+			SetupIncap(baron);
+			AssertIncapacitated(eliza);
+			Card mdp = GetCardInPlay("MobileDefensePlatform");
+
+			GoToUseIncapacitatedAbilityPhase(eliza);
+			QuickHPStorage(mdp);
+			DecisionSelectTurnTaker = sentinels.TurnTaker;
+			DecisionSelectCard = mainstay;
+			DecisionSelectTarget = mdp;
+			UseIncapacitatedAbility(eliza, 1);
+			QuickHPCheck(-2);
+
 		}
 
 		[Test()]
@@ -231,7 +250,7 @@ namespace EdgesModTest
 			mdp.SetHitPoints(2);
 
 			// No targets selected
-			DecisionSelectCards = new Card[] { null, null};
+			DecisionSelectCards = new Card[] { null, null };
 			PlayCard(testCard);
 			AssertIsInPlay(mdp);
 			AssertIsInPlay(bb);
@@ -255,13 +274,13 @@ namespace EdgesModTest
 			bb2.SetHitPoints(2);
 
 			// 1 card destroy
-			Card[] cards2 = { bb2, null};
+			Card[] cards2 = { bb2, null };
 			DecisionSelectCards = cards2;
 			testCard = PutInHand(eliza, "SwiftIncapacitation");
 			PlayCard(testCard);
 			AssertInTrash(bb);
 		}
-		
+
 		[Test()]
 		public void TestArcaneArmRetainTargetStatus()
 		{
@@ -429,7 +448,7 @@ namespace EdgesModTest
 			PlayCard(rr2); //Should fail to play
 
 			QuickHPStorage(mdp);
-			DecisionSelectTargets = new Card[] { mdp, mdp};
+			DecisionSelectTargets = new Card[] { mdp, mdp };
 			UsePower(rr);
 			QuickHPCheck(-3);
 		}
@@ -494,7 +513,7 @@ namespace EdgesModTest
 
 			//4 Rapier power, choose 2 targets
 			QuickHPStorage(mdp, bb, bb2, bb3);
-			DecisionSelectTargets = new Card[] { mdp, bb, null, null};
+			DecisionSelectTargets = new Card[] { mdp, bb, null, null };
 			UsePower(rr);
 			QuickHPCheck(-2, -2, 0, 0);
 
@@ -532,7 +551,7 @@ namespace EdgesModTest
 			PutOnDeck(eliza, rr2);
 			PlayTopCard(eliza); //Should fail to play card
 		}
-		
+
 		[Test()]
 		public void TestCallForArmsRapier()
 		{
@@ -547,7 +566,7 @@ namespace EdgesModTest
 			var rapier = eliza.HeroTurnTaker.Deck.Cards.First((Card c) => c.Identifier == "RunicRapier");
 			var ca = PutInHand(eliza, "CallForArms");
 			var rs = PutInHand(eliza, "RapidStrikes");
-			DecisionSelectCards = new Card[]{ rapier, rs, null};
+			DecisionSelectCards = new Card[] { rapier, rs, null };
 
 			QuickShuffleStorage(eliza);
 			QuickHandStorage(eliza.ToHero());
@@ -728,6 +747,68 @@ namespace EdgesModTest
 			GoToEndOfTurn(eliza);
 			QuickHPCheck(-4);
 			AssertInTrash(mdp);
+		}
+
+		[Test()]
+		public void TestBladeFlurryFireDamage()
+		{
+			SetupGameController("BaronBlade", HeroNamespace, "Megalopolis");
+
+			StartGame();
+
+			var mdp = GetCardInPlay("MobileDefensePlatform");
+
+			GoToPlayCardPhase(eliza);
+
+			var bf = PutIntoPlay("BladeFlurry");
+
+			QuickHPStorage(mdp);
+			DealDamage(eliza, mdp, 2, DamageType.Fire);
+			QuickHPCheck(-2);
+		}
+
+		[Test()]
+		public void TestBladeFlurrySwapDamageTypes()
+		{
+			SetupGameController("BaronBlade", HeroNamespace, "TheVisionary", "Megalopolis");
+
+			StartGame();
+
+			var mdp = GetCardInPlay("MobileDefensePlatform");
+			
+			GoToPlayCardPhase(eliza);
+
+			var bf = PutIntoPlay("BladeFlurry");
+
+			DecisionSelectCard = eliza.CharacterCard;
+			var tte = PutIntoPlay("TwistTheEther");
+
+			ResetDecisions();
+
+			DecisionSelectDamageType = DamageType.Fire;
+			DealDamage(eliza, mdp, 2, DamageType.Cold);
+		}
+
+		[Test()]
+		public void TestBladeFlurryHastyAugmentation()
+		{
+			SetupGameController("BaronBlade", HeroNamespace, "Unity", "Megalopolis");
+
+			StartGame();
+
+			var mdp = GetCardInPlay("MobileDefensePlatform");
+
+			GoToPlayCardPhase(unity);
+
+			var bf = PutIntoPlay("BladeFlurry");
+
+			DecisionSelectCard = eliza.CharacterCard;
+			DecisionSelectPower = eliza.CharacterCard;
+			DecisionSelectTarget = mdp;
+
+			QuickHPStorage(mdp);
+			PutIntoPlay("HastyAugmentation");
+			QuickHPCheck(-6);
 		}
 	}
 }
