@@ -11,27 +11,28 @@ namespace EdgesOfTheMultiverse.Eliza
 {
 	public class DeflectionCellCardController: ArcaneCellCardController
 	{
+		
+
 		public DeflectionCellCardController(Card card, TurnTakerController turnTakerController) : base(card, turnTakerController) 
 		{
 		}
-		//Reduces damage Arcane Arm takes by 1, draw a card when it leaves play
+		//Reduces damage Arcane Arm takes by 1
 		public override void AddTriggers()
 		{
 			AddReduceDamageTrigger((Card c) => c.Identifier == "ArcaneArm", 1);
-			AddIfTheTargetThatThisCardIsNextToLeavesPlayDestroyThisCardTrigger();
-			AddAfterLeavesPlayAction(WhenLeavesPlay, TriggerType.DrawCard);
 		}
 
-		public override IEnumerator WhenLeavesPlay(GameAction ga)
+		//Draw a card
+		public override IEnumerator Play()
 		{
-			IEnumerator e = base.GameController.DrawCard(base.HeroTurnTaker, true);
+			IEnumerator routine = DrawCards(this.HeroTurnTakerController, 1);
 			if (base.UseUnityCoroutines)
 			{
-				yield return base.GameController.StartCoroutine(e);
+				yield return base.GameController.StartCoroutine(routine);
 			}
 			else
 			{
-				base.GameController.ExhaustCoroutine(e);
+				base.GameController.ExhaustCoroutine(routine);
 			}
 		}
 	}

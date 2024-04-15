@@ -14,18 +14,17 @@ namespace EdgesOfTheMultiverse.Eliza
 		public ImpactCellCardController(Card card, TurnTakerController turnTakerController):base(card, turnTakerController) 
 		{ 
 		}
-		//Increases Eliza damage by 1, deal 1 target 2 damage when leaves play
+		// Eliza may deal 1 target 2 fire damage.
 		public override void AddTriggers()
 		{
-			AddIncreaseDamageTrigger((DealDamageAction dd) => dd.DamageSource.IsSameCard(base.CharacterCard), 1);
-			AddIfTheTargetThatThisCardIsNextToLeavesPlayDestroyThisCardTrigger();
-			AddBeforeLeavesPlayAction(WhenLeavesPlay, TriggerType.DealDamage);
+			AddIncreaseDamageTrigger((DealDamageAction dd) => dd.DamageSource.IsSameCard(base.CharacterCard) && 
+				FindCardsWhere((Card c) => c.IsInPlay && c.Identifier == "ArcaneArm").Count()>=1, 1);
 		}
 		
-		public override IEnumerator WhenLeavesPlay(GameAction ga)
+		public override IEnumerator Play()
 		{
 			IEnumerator e = base.GameController.SelectTargetsAndDealDamage(this.HeroTurnTakerController, new DamageSource(base.GameController, base.CharacterCard),
-				2, DamageType.Fire, 1, false, 1, cardSource: base.GetCardSource());
+				2, DamageType.Fire, 1, true, 0, cardSource: base.GetCardSource());
 			if (base.UseUnityCoroutines)
 			{
 				yield return base.GameController.StartCoroutine(e);

@@ -64,7 +64,6 @@ namespace EdgesOfTheMultiverse.Eliza
 		{
 			AddReduceDamageTrigger((Card c) => c == base.Card, 1);
 			AddRedirectDamageTrigger((DealDamageAction dealDamage) => dealDamage.Target == base.CharacterCard, () => base.Card);
-			//AddMaintainTargetTriggers((Card c) => c.Identifier == Card.Identifier, 6, new List<string> { "equipment" });
 		}
 		
 	}

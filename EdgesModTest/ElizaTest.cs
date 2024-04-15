@@ -366,19 +366,23 @@ namespace EdgesModTest
 
 			StartGame();
 
-			var aa = PutIntoPlay("ArcaneArm");
 			var mdp = GetCardInPlay("MobileDefensePlatform");
 
 			GoToPlayCardPhase(eliza);
 
 			var dc = PutInHand(eliza, "DeflectionCell");
+			QuickHandStorage(eliza.ToHero());
 			PlayCard(dc);
+			QuickHandCheck(0);
+			
 
 			//Reduce damage
-			QuickHPStorage(mdp, aa, eliza.CharacterCard);
+			QuickHPStorage(mdp, eliza.CharacterCard);
 			DealDamage(mdp, eliza, 3, DamageType.Melee);
-			QuickHPCheck(0, -1, 0);
+			QuickHPCheck(0, -3);
 
+
+			var aa = PutIntoPlay("ArcaneArm");
 			dc = PutInHand(eliza, "DeflectionCell");
 			PlayCard(dc);
 
@@ -387,9 +391,7 @@ namespace EdgesModTest
 			QuickHPCheck(0, 0, 0);
 
 			//Destroy Deflection cell and draw a card.
-			QuickHandStorage(eliza.ToHero());
-			DestroyCard(dc);
-			QuickHandCheck(1);
+			
 		}
 
 		//Test Impact Cell
@@ -400,33 +402,33 @@ namespace EdgesModTest
 
 			StartGame();
 
-			var aa = PutIntoPlay("ArcaneArm");
+			//var aa = PutIntoPlay("ArcaneArm");
 			var mdp = GetCardInPlay("MobileDefensePlatform");
 
 			GoToPlayCardPhase(eliza);
 
 			var ic = PutInHand(eliza, "ImpactCell");
-			PlayCard(ic);
-
+			
 			//Increase Damage
+			QuickHPStorage(mdp, eliza.CharacterCard);
+			DecisionSelectTarget = mdp;
+			DecisionYesNo = true;
+			PlayCard(ic);
+			QuickHPCheck(-2, 0);
+
+			var aa = PutIntoPlay("ArcaneArm"); 
 			QuickHPStorage(mdp, aa, eliza.CharacterCard);
 			DealDamage(eliza, mdp, 3, DamageType.Melee);
 			QuickHPCheck(-4, 0, 0);
 
-			var ic2 = PutInHand(eliza, "ImpactCell");
-			PlayCard(ic2);
-
-			QuickHPStorage(mdp, aa, eliza.CharacterCard);
-			DealDamage(eliza, mdp, 3, DamageType.Melee);
-			QuickHPCheck(-5, 0, 0);
-
 			SetHitPoints(mdp, 10);
-
-			//Destroy cell and deal damage.
 			QuickHPStorage(mdp, aa, eliza.CharacterCard);
 			DecisionSelectTarget = mdp;
-			DestroyCard(ic2);
-			QuickHPCheck(-3, 0, 0);
+			DecisionYesNo = true;
+
+			var ic2 = PutInHand(eliza, "ImpactCell");
+			PlayCard(ic2);
+			QuickHPCheck(-4, 0, 0);
 		}
 
 		//Test Single Rapier Passive and Power
@@ -467,7 +469,7 @@ namespace EdgesModTest
 
 			DiscardAllCards(eliza);
 
-			var aa = PutIntoPlay("ArcaneArm");
+			
 
 			var rr = PutInHand(eliza, "RunicRapier");
 			var rr2 = PutInHand(eliza, "RunicRapier");
@@ -517,7 +519,15 @@ namespace EdgesModTest
 			UsePower(rr);
 			QuickHPCheck(-2, -2, 0, 0);
 
-			GoToStartOfTurn(eliza);
+			//Check first time Arcane Arm takes damage
+			var aa = PutIntoPlay("ArcaneArm");
+			QuickHPStorage(mdp, bb, aa);
+			DealDamage(mdp, eliza, 2, DamageType.Melee);
+			DealDamage(bb, eliza, 2, DamageType.Melee);
+			QuickHPCheck(-3, 0, -2);
+
+			GoToStartOfTurn(env);
+			SetHitPoints(mdp, 10);
 
 			ResetDecisions();
 
@@ -528,6 +538,12 @@ namespace EdgesModTest
 			QuickHPCheck(-5);
 
 			ResetDecisions();
+
+			//Check first time take damage reset
+			QuickHPStorage(mdp, aa);
+			DealDamage(mdp, eliza, 2, DamageType.Melee);
+			//DealDamage(bb, eliza, 2, DamageType.Melee);
+			QuickHPCheck(-3, -1);
 
 			//Check destroy Telekinetic Cell
 			DecisionSelectCard = rr2;
