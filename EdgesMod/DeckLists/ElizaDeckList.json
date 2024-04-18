@@ -156,13 +156,10 @@
       ],
       "icons": [
         "RedirectDamage",
-        "ReduceDamageTaken",
-        "DestroyEquipment"
+        "ReduceDamageTaken"
       ],
       "body": [
-        "Reduce damage to this card by 1. When {Eliza} would be dealt damage, redirect that damage to this card.",
-        "Up to 3 Arcane Cells may be played next to this card at a time. If you play an Arcane Cell next to this card while 3 others are next to this card, destroy a different Arcane Cell.",
-        "When this card is destroyed, destroy all Arcane Cells next to it."
+        "Reduce damage to this card by 1. When {Eliza} would be dealt damage, redirect that damage to this card."
       ],
       "flavorQuotes": [
         {
@@ -171,7 +168,7 @@
         }
       ],
       "flavorReference": "Eliza, Cliffmond Cliffnotes #8",
-      "hitpoints": 6
+      "hitpoints": 8
     },
     {
       "identifier": "TelekineticCell",
@@ -181,19 +178,28 @@
         "equipment",
         "arcane cell"
       ],
-      "icons": "Manipulate",
-      "body": [
-        "Play this card next to an Arcane Arm in play.",
+      "icons": [
+        "Manipulate",
+        "DealDamageMelee"
+      ],
+      "body"
+      :
+      [
         "Increase the number of Runic Rapiers that can be in play by 1.",
+        "The first time Arcane Arm takes damage each turn, Arcane Arm deals the attacker 1 melee damage.",
         "When this card would leave play, return a Runic Rapier in play to your hand."
       ],
-      "flavorQuotes": [
+      "flavorQuotes"
+      :
+      [
         {
           "identifier": "Eliza",
           "text": "Who said I only had one floating sword?"
         }
       ],
-      "flavorReference": "Eliza, Cliffmond Cliffnotes #6"
+      "flavorReference"
+      :
+      "Eliza, Cliffmond Cliffnotes #6"
     },
     {
       "identifier": "ImpactCell",
@@ -204,13 +210,12 @@
         "arcane cell"
       ],
       "icons": [
-        "IncreaseDamageDealt",
-        "DealDamageFire"
+        "DealDamageFire",
+        "IncreaseDamageDealt"
       ],
       "body": [
-        "Play this card next to an Arcane Arm in play.",
-        "Increase the damage dealt by {Eliza} by one.",
-        "When this card would leave play, {Eliza} deals 1 target 2 fire damage."
+        "{Eliza} deals 1 target 2 fire damage.",
+        "If Arcane Arm is in play, increase damage dealt by {Eliza} by 1."
       ],
       "flavorQuotes": [
         {
@@ -229,13 +234,12 @@
         "arcane cell"
       ],
       "icons": [
-        "ReduceDamageTaken",
-        "DrawCardNow"
+        "DrawCardNow",
+        "ReduceDamageTaken"
       ],
       "body": [
-        "Play this card next to an Arcane Arm in play.",
-        "Reduce the damage taken by the Arcane Arm by 1.",
-        "When this card would leave play, you may draw a card."
+        "You may draw a card.",
+        "Reduce damage taken by Arcane Arm by 1."
       ],
       "flavorQuotes": [
         {
@@ -441,13 +445,11 @@
       "hitpointColor": "A86272",
       "character": true,
       "powers": [
-        "Search your deck for an Arcane Cell and put it into your hand. You may return an Arcane Cell to your hand from play. If you do, play an Arcane Cell. Otherwise draw a card."
+        "Return up to 3 Arcane Cells from play to your hand. Play up to X Arcane Cells where X = the number of cards move to your hand this way plus 1."
       ],
       "icons": [
-        "Search",
         "Manipulate",
-        "PlayCardNow",
-        "DrawCardNow"
+        "PlayCardNow"
       ],
       "hitpoints": 24,
       "nemesisIdentifiers": [
@@ -455,8 +457,8 @@
       ],
       "incapacitatedAbilities": [
         "One player may play a card.",
-        "Increase damage dealt by a target by 1 until the start of your next turn.",
-        "Reduce damage dealt to a target by 1 until the start of your next turn."
+        "Until the start of your next turn, increase damage dealt by heros by 1.",
+        "Until the start of your next turn, reduce damage taken by heros by 1."
       ],
       "flippedIcons": [
         "PlayCardNow",
@@ -464,7 +466,7 @@
         "ReduceDamageTaken"
       ],
       "openingLines": {
-        "default": "Neutralize the threat. Now!"
+        "default": "Cease this quarrel. Now!"
       },
       "complexity": 2
     }

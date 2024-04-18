@@ -313,37 +313,147 @@ namespace EdgesModTest
 		}
 
 		[Test()]
-		public void TestMageKnightInnateSearch()
+		public void TestMageKnightInnateR0P1()
 		{
 			SetupGameController("BaronBlade", HeroNamespace + "/MageKnightElizaCharacter", "Megalopolis");
 
 			StartGame();
 
-			var ic = PutOnDeck("ImpactCell");
+			var tc = PutInHand("TelekineticCell");
 
-			DecisionSelectCard = ic;
-			QuickHandStorage(eliza);
+			DecisionSelectCardToPlay = tc;
+
 			UsePower(eliza, 0);
-			QuickHandCheck(2);
+			AssertInPlayArea(eliza, tc);
 		}
 
 		[Test()]
-		public void TestMageKnightInnateReturnPlay()
+		public void TestMageKnightInnateR1P1()
 		{
 			SetupGameController("BaronBlade", HeroNamespace + "/MageKnightElizaCharacter", "Megalopolis");
 
 			StartGame();
 
-			var ic = PutOnDeck("ImpactCell");
-			var aa = PutIntoPlay("ArcaneArm");
-			var dc = PutIntoPlay("DeflectionCell");
 
-			//DecisionSelectCards = new List<Card> { ic, dc, ic};
-			//QuickHandStorage(eliza);
+			DiscardAllCards(eliza);
+			var tc = PutInHand("TelekineticCell");
+			var ic = PutIntoPlay("ImpactCell");
+
+			DecisionSelectCards = new Card[] { ic, tc, null };
+			QuickHandStorage(eliza);
+
 			UsePower(eliza, 0);
-			/*AssertInPlayArea(eliza, ic);
-			AssertInHand(eliza, dc);
-			QuickHandCheck(1);*/
+			AssertInPlayArea(eliza, tc);
+			AssertInHand(eliza, ic);
+			QuickHandCheck(0);
+		}
+
+		[Test()]
+		public void TestMageKnightInnateReturnAndPlaySameCard()
+		{
+			SetupGameController("BaronBlade", HeroNamespace + "/MageKnightElizaCharacter", "Megalopolis");
+
+			StartGame();
+
+			var dc = PutIntoPlay("DeflectionCell");
+			DiscardAllCards(eliza);
+
+			DecisionSelectCards = new Card[] { dc, dc, null };
+			QuickHandStorage(eliza);
+			
+			UsePower(eliza, 0);
+			AssertInPlayArea(eliza, dc);
+			QuickHandCheck(1);
+		}
+
+		[Test()]
+		public void TestMageKnightInnateR3P4()
+		{
+			SetupGameController("BaronBlade", HeroNamespace + "/MageKnightElizaCharacter", "Megalopolis");
+
+			StartGame();
+
+			var dc = PutIntoPlay("DeflectionCell");
+			var dc2 = PutIntoPlay("DeflectionCell");
+			var ic = PutIntoPlay("ImpactCell");
+			DiscardAllCards(eliza);
+			var tc = PutInHand("TelekineticCell");
+
+			DecisionSelectCards = new Card[] { dc, dc2, ic, dc, ic, tc, dc2 };
+			QuickHandStorage(eliza);
+
+			UsePower(eliza, 0);
+			AssertInPlayArea(eliza, dc);
+			AssertInPlayArea(eliza, dc2);
+			AssertInPlayArea(eliza, tc);
+			AssertInPlayArea(eliza, ic);
+
+			QuickHandCheck(1);
+		}
+
+		[Test()]
+		public void TestMageKnightIncap1()
+		{
+			SetupGameController("BaronBlade", HeroNamespace + "/MageKnightElizaCharacter", "Legacy", "Megalopolis");
+
+			StartGame();
+
+			SetupIncap(baron);
+
+			var ip = PutInHand(legacy, "InspiringPresence");
+
+			DecisionSelectTurnTaker = legacy.TurnTaker;
+			DecisionSelectCardToPlay = ip;
+
+			UseIncapacitatedAbility(eliza, 0);
+			AssertIsInPlay(ip);
+		}
+
+		[Test()]
+		public void TestMageKnightIncap2()
+		{
+			SetupGameController("BaronBlade", HeroNamespace + "/MageKnightElizaCharacter", "Bunker", "Megalopolis");
+
+			StartGame();
+
+			SetupIncap(baron);
+
+			UseIncapacitatedAbility(eliza, 1);
+
+			var mdp = GetCardInPlay("MobileDefensePlatform");
+			DestroyCard(mdp);
+
+			QuickHPStorage(baron);
+			DealDamage(bunker, baron, 2, DamageType.Melee);
+			QuickHPCheck(-3);
+
+			GoToStartOfTurn(eliza);
+
+			QuickHPStorage(baron);
+			DealDamage(bunker, baron, 2, DamageType.Melee);
+			QuickHPCheck(-2);
+		}
+
+		[Test()]
+		public void TestMageKnightIncap3()
+		{
+			SetupGameController("BaronBlade", HeroNamespace + "/MageKnightElizaCharacter", "Bunker", "Megalopolis");
+
+			StartGame();
+
+			SetupIncap(baron);
+
+			UseIncapacitatedAbility(eliza, 2);
+
+			QuickHPStorage(bunker);
+			DealDamage(baron, bunker, 2, DamageType.Melee);
+			QuickHPCheck(-1);
+
+			GoToStartOfTurn(eliza);
+
+			QuickHPStorage(bunker);
+			DealDamage(baron, bunker, 2, DamageType.Melee);
+			QuickHPCheck(-2);
 		}
 	}
 }

@@ -44,7 +44,7 @@ namespace EdgesOfTheMultiverse.Eliza
         {
             AddTrigger(
                 (RemoveTargetAction r) => r.CardToRemoveTarget == Card,
-                (RemoveTargetAction a) => AdjustTargetnessResponseNotPrivate(a, Card, 6),
+                (RemoveTargetAction a) => AdjustTargetnessResponseNotPrivate(a, Card, 8),
                 TriggerType.CancelAction,
                 TriggerTiming.Before,
                 outOfPlayTrigger: true
@@ -52,7 +52,7 @@ namespace EdgesOfTheMultiverse.Eliza
 
             AddTrigger(
                 (BulkRemoveTargetsAction r) => r.CardsToRemoveTargets.Any((Card c) => c == Card),
-                (BulkRemoveTargetsAction a) => AdjustTargetnessResponseNotPrivate(a, Card, 6),
+                (BulkRemoveTargetsAction a) => AdjustTargetnessResponseNotPrivate(a, Card, 8),
                 TriggerType.CancelAction,
                 TriggerTiming.Before,
                 outOfPlayTrigger: true
