@@ -412,7 +412,6 @@ namespace EdgesModTest
 			//Increase Damage
 			QuickHPStorage(mdp, eliza.CharacterCard);
 			DecisionSelectTarget = mdp;
-			DecisionYesNo = true;
 			PlayCard(ic);
 			QuickHPCheck(-2, 0);
 
@@ -424,7 +423,6 @@ namespace EdgesModTest
 			SetHitPoints(mdp, 10);
 			QuickHPStorage(mdp, aa, eliza.CharacterCard);
 			DecisionSelectTarget = mdp;
-			DecisionYesNo = true;
 
 			var ic2 = PutInHand(eliza, "ImpactCell");
 			PlayCard(ic2);

@@ -21,7 +21,7 @@ namespace EdgesOfTheMultiverse.Eliza
 		public override void AddTriggers()
 		{
 			AddIfTheTargetThatThisCardIsNextToLeavesPlayDestroyThisCardTrigger();
-			AddTrigger((DealDamageAction dd) => !IsPropertyTrue("FirstDamageToArcaneArmThisTurn") && dd.DamageSource.IsTarget && !dd.DamageSource.IsHeroTarget && dd.DidDealDamage && dd.Target.Identifier == "ArcaneArm" && !HasDamageOccurredThisTurn(dd.Target, (Card ds) => ds.IsTarget && !IsHeroTarget(ds), dd), FirstDamageDealtResponse, TriggerType.DealDamage, TriggerTiming.After, ActionDescription.DamageTaken);
+			AddTrigger((DealDamageAction dd) => !IsPropertyTrue("FirstDamageToArcaneArmThisTurn") && dd.DamageSource.IsTarget && dd.DidDealDamage && dd.Target.Identifier == "ArcaneArm" && !HasDamageOccurredThisTurn(dd.Target, (Card ds) => ds.IsTarget && !IsHeroTarget(ds), dd), FirstDamageDealtResponse, TriggerType.DealDamage, TriggerTiming.After, ActionDescription.DamageTaken);
 			AddAfterLeavesPlayAction((GameAction ga) => ResetFlagAfterLeavesPlay("FirstDamageToArcaneArmThisTurn"), TriggerType.Hidden);
 			AddAfterLeavesPlayAction(WhenLeavesPlay, TriggerType.MoveCard);
 		}

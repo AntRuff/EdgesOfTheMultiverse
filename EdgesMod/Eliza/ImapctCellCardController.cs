@@ -24,7 +24,7 @@ namespace EdgesOfTheMultiverse.Eliza
 		public override IEnumerator Play()
 		{
 			IEnumerator e = base.GameController.SelectTargetsAndDealDamage(this.HeroTurnTakerController, new DamageSource(base.GameController, base.CharacterCard),
-				2, DamageType.Fire, 1, true, 0, cardSource: base.GetCardSource());
+				2, DamageType.Fire, 1, false, 0, cardSource: base.GetCardSource());
 			if (base.UseUnityCoroutines)
 			{
 				yield return base.GameController.StartCoroutine(e);

@@ -214,7 +214,7 @@
         "IncreaseDamageDealt"
       ],
       "body": [
-        "{Eliza} deals 1 target 2 fire damage.",
+        "{Eliza} may deal 1 target 2 fire damage.",
         "If Arcane Arm is in play, increase damage dealt by {Eliza} by 1."
       ],
       "flavorQuotes": [
